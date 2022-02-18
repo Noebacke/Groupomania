@@ -1,0 +1,123 @@
+@import './color.scss';
+
+body{
+    // background-image: url('../../public/img/icon.png');
+    background: $grey-reddit;
+    font-family: $font-family-reddit;
+    margin: 0 ;
+    
+}
+
+a{
+    text-decoration: none;
+    
+}
+
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+button {
+    border-radius: 15px;
+    padding: 10px;
+    background-color: $grey-reddit;
+    color: $blue-reddit;
+    border: none;
+    cursor: pointer;
+    
+}
+
+.post{ 
+    background-color: $white-reddit; 
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 4px;
+    border: 0.5px solid $border-color;
+    margin-bottom: 10px;
+    display: flex;
+    margin: 20px auto;
+    width: 30%;
+    
+    .user{
+        background-color: white;
+        padding: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+        .created-at{
+            font-size: 12px;
+        }
+    }
+
+    .comment {
+        margin: 5px;
+        padding: 20px;
+        cursor: pointer;
+    }
+    .nav-bar-title{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .nav-post {
+        display: flex;
+        padding: 15px;
+        background-color: $grey-reddit;
+        justify-content: space-around;
+        align-items: center !important;
+        i{
+            font-size: 17px;
+        }
+        .likes-system{
+            display: flex;
+            justify-content: space-around ;
+            align-items: baseline ;
+            width: 80px;
+            .likes {
+                color: $blue-reddit;
+                background-color: $grey-reddit;
+                
+            }
+            .dislikes {
+                color: red;
+                
+            }
+        }
+        .comments{
+            border: none;
+            cursor: pointer;
+            
+        }
+        .delete-button {
+            border: none;
+            cursor: pointer;
+            i{
+                color: red;
+            }
+        }
+            .comments-of-post {
+                background-color: $orange-reddit;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                
+
+                .user-of-comment-post {
+                    background-color: darkorchid;
+                    margin: 10px;
+                }
+                .response-of-comment-post {
+                    background-color: darkseagreen;
+                    margin: 10px;
+                    
+                }
+                p { margin-right: 100px }
+            }
+        
+    }
+}
