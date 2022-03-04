@@ -1,15 +1,24 @@
 import React from 'react';
 
 const Comments = (props) => {
-    return (
+
+    const handleSubmit = () => {
         
-        <div className="comments-of-post">
-            <div className="user-of-comment-post">
-                Par {props.user_name}
+    }
+
+    return (
+        <div>
+            <div className="comments-of-post">
+                <div className="user-of-comment-post">
+                    Par {props.user_name}
+                </div>
+                <div className="response-of-comment-post">
+                    {props.description}
+                </div>
             </div>
-            <div className="response-of-comment-post">
-                {props.description}
-            </div>
+            <button className='button-create-post' onClick={handleSubmit}>
+                <i class="fas fa-plus-circle"></i>
+            </button>
         </div>
     )
 };

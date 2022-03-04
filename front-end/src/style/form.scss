@@ -37,8 +37,6 @@
 .title{
     width: 30%;
     margin: 0 auto;
-    border-radius: 10px;
-    border: 0.5px solid $border-color;
 }
 .description{
     width: 60%;
@@ -48,5 +46,10 @@
     height: 100px;
 }
 .img-of-newpost{
+    margin: 0 auto;
+    max-width: 100%;
+}
+img{
+    max-width: 100%;
     margin: 0 auto;
 }

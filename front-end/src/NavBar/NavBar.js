@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { URL_GET_USER } from '../config';
 
 const NavBar = () => {
+  const [userGet, setUser] = useState([])
   const navigate = useNavigate()
   const handleClickDisconnect = () => {
     localStorage.clear()
     navigate('/')
   }
-  const handleClickProfil = () => {
-    const user_id = localStorage.getItem('user_Id')
-    navigate('/profil/'+ user_id)
+  const handleGetUser = (user) => {
+    axios.get(URL_GET_USER, user)
+        .then( res => {
+            const getUser = res.data
+            console.log("getUser",getUser);
+            setUser(getUser)
+            navigate('/profil/' + '?' + userGet.id)
+        })
+        .catch("erreur lors du chargement d la page profil")
+        
+    
   }
     return (
       <nav>
         <div className="button-of-nav">
-          <button className="my-profil" onClick={handleClickProfil}>
+          <button className="my-profil" onClick={handleGetUser}>
             <i class="fas fa-user-circle"></i>
             Mon profil
           </button>

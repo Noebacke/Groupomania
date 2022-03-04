@@ -6,9 +6,11 @@ import NavBar from '../../NavBar/NavBar';
 import { useNavigate } from 'react-router-dom'
 
 
+
 const GetAllPost = () => {
     const navigate = useNavigate()
     const [posts, setPosts] = useState([])
+
     
     useEffect( () => {
         axios.get(URL_POSTS)
@@ -21,6 +23,7 @@ const GetAllPost = () => {
     const handleSubmit = () => {
         navigate('/createpost')
     }
+
 
     return (
         

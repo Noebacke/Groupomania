@@ -1,4 +1,5 @@
 import './style/index.scss';
+import axios  from "axios";
 import { Routes, Route} from 'react-router-dom';
 import Profil from './Components/Profil/Profil';
 import LogIn from './Components/Connexion.js/LogIn';
@@ -10,10 +11,11 @@ import GetOnePost from './Components/Posts/GetOnePost';
 import ProtectedRoute from './services/ProtectedRoute';
 import ProtectedRouteFrom from './services/ProtectedRouteForm';
 import CreateComment from './Components/Comments/CreateComment';
-
-
+const token = localStorage.getItem('token');
+if(token){
+  axios.defaults.headers["authorization"] =token
+}
 const App = () => {
-
 
   return (
     <div className="App">
@@ -27,13 +29,14 @@ const App = () => {
           <Route path="/getallpost" element={<GetAllPost />} />
           <Route path="/createpost" element={<CreatePost />} />
           <Route path="/updatepost/*" element={<UpdatePost />} />
-          <Route path="/getonepost/*" element={<GetOnePost />} />
+          <Route path="/post/*" element={<GetOnePost/>} />
           <Route path='/createcomments' element={<CreateComment/>}/>
         </Route>
       </Routes>
     </div>
   );
 };
+// On peut utiliser une variable dans un url avec react router
 
 export default App;
  

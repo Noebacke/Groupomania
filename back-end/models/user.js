@@ -22,10 +22,6 @@ const db = require('../config/db');
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    random_user: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: true
-    }
   }, {
     
   });

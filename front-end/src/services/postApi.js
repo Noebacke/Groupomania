@@ -7,11 +7,13 @@ function create(post) {
 }
 
 function update (post) {
-    return axios.put(URL_POSTS +  `/${post.id}`, post)
+    
+    const postId = window.location.search.slice(1);
+    return axios.put(URL_POSTS +  `/${postId}`, post)
 }
 
 function getOne (post) {
-    let postId = localStorage.getItem('Post_id')
+    const postId = window.location.search.slice(1);
     return axios.get(URL_POSTS + `/${postId}`, post)
 }
 

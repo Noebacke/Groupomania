@@ -6,12 +6,8 @@ function create(user) {
     return axios.post(URL_SIGNUP, user)
 }
 
-function getUser (user) {
-    return axios.get(URL_GET_USER, user)
-}
-
 export default {
     create,
-    getUser,
+    
     
 };

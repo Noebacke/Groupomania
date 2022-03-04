@@ -31,7 +31,6 @@ const Post = (props) => {
     }, []);
 
     const handleGetComments = () =>{
-        localStorage.setItem("Post_id",  props.id)
         axios.get(URL_COMMENTS + `/${props.id}`)
         .then((res) => {
           const allCommentofpost = res.data;
@@ -41,12 +40,13 @@ const Post = (props) => {
     }
 
     const handleUpdatePost = () => {
-        navigate('/updatepost/' + props.id ) 
+        navigate('/updatepost/' + '?' + props.id ) 
     }
 
     const handleGetPost = () => {
-        navigate("/post/" + props.id )
+        navigate("/post/" + '?' + props.id )
     }
+
 
     return (
       <div className="post">

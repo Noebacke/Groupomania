@@ -34,7 +34,6 @@ const LogIn = () => {
             const result = await authApi.authenticate(credentials);
             console.log("token",result);
             if (result.token){
-                
                 navigate('/getallpost')
             }
         }

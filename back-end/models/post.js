@@ -19,6 +19,9 @@ const db = require('../config/db');
         imageUrl: {
           type: DataTypes.STRING,
         },
+        userId: {
+          type: DataTypes.STRING,
+        }
       },
       {}
     );

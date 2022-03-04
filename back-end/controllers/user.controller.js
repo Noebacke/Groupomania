@@ -40,13 +40,14 @@ module.exports.login = (req, res, next) => {
           }
           res.status(200).json({
             userId: user.id,
-            token: jwt.sign({ userId: email.id }, process.env.SECRET_TOKEN, {
-              expiresIn: "5h",
+            token: jwt.sign({ userId: user.id }, process.env.SECRET_TOKEN, {
+              expiresIn: "10h",
             }),
             admin: user.admin,
-            random_user: user.random_user,
             user_name: user.user_name,
+            
           });
+          
         })
         
         .catch(error => res.status(500).json({message: "la connexion à l'utilisateur à échoué"}));
@@ -72,5 +73,13 @@ module.exports.update = async (req,res, next) => {
 }
 
 module.exports.getUser = async ( req, res, next) => {
-  
+  const userProfil = {}
+  await UserModel.findOne({where : {id: req.params.id}})
+  .then(user => {
+    userProfil.id = user.id
+    userProfil.user_name = user.user_name
+    
+    res.status(200).json(userProfil)
+  })
+  .catch(error => res.status(404).json({ error }))
 }

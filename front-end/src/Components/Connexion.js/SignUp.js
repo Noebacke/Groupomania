@@ -21,13 +21,6 @@ const SignUp = () => {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(newUser);
-    Axios.post(URL_SIGNUP, newUser).then((res) => {
-      const user = res.data;
-      setUsers(user);
-    });
-  }, []);
 
   const handleChangeEmail = (event) => {
     const currentTarget = event.currentTarget;
