@@ -22,15 +22,13 @@ module.exports.getPost = async ( req, res, next) => {
   .catch(error => res.status(404).json({ error }))
 };
 
-module.exports.deletePost = ( req, res, next) => {
-
-  const post =  Post.findOne({where: { id: req.params.id } });
-  const user =  User.findOne({where: { id: req.params.id} });
-
-  if (post.user_name !== user.user_name) {
+module.exports.deletePost = async ( req, res, next) => {
+  const post = await Post.findOne({where: { id: req.params.id} });
+  
+  if (post.userId != req.auth ) {
     return res.status(400).json({
-      error: new Error("requête non autorisée !"),
-    });
+      error: new Error("Requête non autorisée"),
+    }),console.log('Vous navez pas les droits nécéssaires');
   }
   Post.destroy({ where: { id: req.params.id } })
     .then(() => res.status(200).json({ message: "Post supprimé" }))
@@ -41,12 +39,20 @@ module.exports.deletePost = ( req, res, next) => {
 
 module.exports.createPost = async (req, res, next) => {
   const postObject = JSON.parse(req.body.post);
-  delete postObject.id; // on supprime l'id reçu ( quelqu'un peut choisir l'id du produit en le rentrant manuellement) pour y mettre la nôtre
+  const user = await User.findOne({where: { id: req.auth} });
+
+  delete postObject.id;
   const userId = req.auth
+  let imagePost = "";
+    if (req.file) { 
+        imagePost = `${req.protocol}://${req.get("host")}/images/${req.file.filename}` 
+    }
+
   const createPost = await Post.create({
       ...postObject, 
-      imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+      imageUrl: imagePost,
       userId: userId,
+      user_name: user.user_name
       
   });
 
@@ -58,7 +64,6 @@ module.exports.createPost = async (req, res, next) => {
 
 exports.updatePost = async (req, res, next) => {
   const post = await Post.findOne({where: { id: req.params.id} });
-  const user = await User.findOne({where: { id: req.params.id} });
   console.log("post.user_name", post.userId);
   console.log("req.auth", req.auth);
 
@@ -71,10 +76,8 @@ exports.updatePost = async (req, res, next) => {
   const postObject = req.file
     ? {
         ...JSON.parse(req.body.post),
-        imageUrl: `${req.protocol}://${req.get("host")}/images/${
-          req.file.filename
-        }`,
-      }
+        imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
+    }
     : { ...req.body };
 
   post.update({

@@ -1,13 +1,12 @@
 import React from 'react';
+import axios from 'axios';
+import { URL_COMMENTS } from '../../config';
+import DeleteButton from '../Posts/DeleteButton';
 
 const Comments = (props) => {
 
-    const handleSubmit = () => {
-        
-    }
-
     return (
-        <div>
+        <div className='comments'>
             <div className="comments-of-post">
                 <div className="user-of-comment-post">
                     Par {props.user_name}
@@ -16,9 +15,14 @@ const Comments = (props) => {
                     {props.description}
                 </div>
             </div>
-            <button className='button-create-post' onClick={handleSubmit}>
-                <i class="fas fa-plus-circle"></i>
-            </button>
+            <DeleteButton
+                onDelete={() => {
+                    axios.delete(URL_COMMENTS + `/${props.id}`).then((res) => {
+                    window.location.reload();
+                    console.log(res);
+                    });
+                }}
+            />
         </div>
     )
 };

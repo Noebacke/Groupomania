@@ -1,9 +1,11 @@
 'use strict';
 const { DataTypes, STRING } = require('sequelize');
 const db = require('../config/db');
+const User = require('./user');
 
 
-const Comment = db.define('Comment', {
+const Comment = db.define(
+  'Comment', {
 
   description: {
     type: DataTypes.STRING,
@@ -11,16 +13,32 @@ const Comment = db.define('Comment', {
   },
   user_name:{
     type: DataTypes.STRING,
-  }
+  },
+  userId: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+
+  postId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
 }, {
   
 });
 
-Comment.associate = models => {
+Comment.associate = (models) => {
   
-  Comment.hasOne(models.post, {
-    onDelete: 'cascade',
-  });
+  Comment.belongsTo(models.post,{
+    foreignKey: "postId",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
+  Comment.belongsTo(models.user, {
+    foreignKey: "userId",
+    onDelete: "CASCADE",
+    onUpdate:"CASCADE"
+  })
 }
 
 module.exports = Comment;

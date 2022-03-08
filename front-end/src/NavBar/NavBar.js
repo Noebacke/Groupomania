@@ -11,15 +11,15 @@ const NavBar = () => {
     navigate('/')
   }
   const handleGetUser = (user) => {
-    axios.get(URL_GET_USER, user)
-        .then( res => {
-            const getUser = res.data
-            console.log("getUser",getUser);
-            setUser(getUser)
-            navigate('/profil/' + '?' + userGet.id)
-        })
-        .catch("erreur lors du chargement d la page profil")
-        
+    // axios.get(URL_GET_USER, user)
+    //     .then( res => {
+    //         const getUser = res.data
+    //         console.log("getUser",getUser);
+    //         setUser(getUser)
+    //         navigate('/profil/' + '?' + userGet.id)
+    //     })
+    //     .catch("erreur lors du chargement d la page profil")
+      navigate('/profil/' + '?' + user.id)
     
   }
     return (

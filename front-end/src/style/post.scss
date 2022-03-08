@@ -93,14 +93,12 @@ button {
                 
             }
         }
-        .comments{
+        .show-comments{
             border: none;
             cursor: pointer;
             
         }
         .delete-button {
-            border: none;
-            cursor: pointer;
             i{
                 color: red;
             }
@@ -124,5 +122,31 @@ button {
                 p { margin-right: 100px }
             }
         
+    }
+}
+
+.comments{
+    background-color: $white-reddit;
+    width: 25%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    .delete-button {
+        background-color: white;
+        i{
+            color: red;
+            font-size: 15px;
+        }
+    }
+}
+.all-comments{
+    display: flex;
+    flex-direction: column;
+    .button-create-comment{
+        font-size: 20px;
     }
 }

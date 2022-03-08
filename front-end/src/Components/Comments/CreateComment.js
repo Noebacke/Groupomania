@@ -1,17 +1,19 @@
 import {useNavigate} from 'react-router-dom'
 import React, { useState } from 'react';
 import commentsApi from '../../services/commentsApi';
+import NavBar from '../../NavBar/NavBar';
 
 
 const CreateComment = () => {
-
+    const navigate = useNavigate();
     const [comment, setComment] = useState({})
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         
         try{
-            const data = commentsApi.create();
+            const data = commentsApi.create(comment);
+            navigate('/')
             
         }catch(error){
             console.log("erreur lors de la publication du commentaire",error);
@@ -27,31 +29,25 @@ const CreateComment = () => {
     }
 
     return (
+      <div>
         <div>
-            <form className="form-conteneur">
-                <h3>Création du post</h3>
-                <br />
-                Titre :
-                <input
-                    name='title'
-                    className="title"
-                    required
-                    size={20}
-                    onChange={handleChange}
-                >
-                </input>
-                <br />
-                Description :
-                <input
-                    name='description'
-                    className="description"
-                    required
-                    onChange={handleChange}
-                >
-                </input>
-                <br />
-                <button onClick={handleSubmit}>Publier le post</button>
-            </form>
+          <div className="nav-bar">
+            <img src="./img/logo.png" className="goupomania-logo"></img>
+            <NavBar />
+          </div>
+        </div>
+        <form className="form-conteneur">
+          <h3>Commentaire</h3>
+          Description :
+          <input
+            name="description"
+            className="description"
+            required
+            onChange={handleChange}
+          ></input>
+          <br />
+          <button onClick={handleSubmit}>Publier le Commentaire</button>
+        </form>
       </div>
     );
 };

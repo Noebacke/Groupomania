@@ -74,7 +74,7 @@ module.exports.update = async (req,res, next) => {
 
 module.exports.getUser = async ( req, res, next) => {
   const userProfil = {}
-  await UserModel.findOne({where : {id: req.params.id}})
+  await UserModel.findOne({where : {id: req.auth}})
   .then(user => {
     userProfil.id = user.id
     userProfil.user_name = user.user_name

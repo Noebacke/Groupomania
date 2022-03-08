@@ -33,8 +33,11 @@ Post.associate = models => {
   });
 
   Post.hasMany(models.comment, {
-    onDelete: 'cascade',
-  })
+    as: 'comments',
+    foreignKey: 'postId',
+    onDelete: 'cascade'
+  });
+
 }
 
 module.exports = Post
