@@ -21,11 +21,7 @@ const GetOnePost = () => {
       console.log("posts", post);
     return (
       <div>
-        <div className="nav-bar">
-          <img
-            src="../img/icon.png"
-            className="goupomania-logo"
-          ></img>
+        <div>
           <NavBar />
         </div>
         <div className='post'>

@@ -28,8 +28,19 @@ const db = require('../config/db');
 
   User.associate = models => {
 
-    User.hasMany(models.post, {
-      onDelete: 'cascade'
+    // Post
+    User.hasMany(models.Post, {
+      foreignKey: "userId",
+      onDelete: "CASCADE",
+      hooks: true,
+    });
+
+    // Comment
+    User.hasMany(models.Comment, {
+      foreignKey: "userId",
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+      hooks: true,
     });
 
   }

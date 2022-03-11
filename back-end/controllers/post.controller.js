@@ -1,9 +1,30 @@
 const Post = require("../models/post");
 const User = require('../models/user');
+const Comment = require('../models/comment')
 
 module.exports.getAllPosts = async (req, res, next) => {
-  const posts = await Post.findAll();
-  res.status(200).json(posts);
+  await Post.findAll({
+    // include: [
+    //   {
+    //     model: User,
+    //     attributes: ["user_name", "id"],
+    //   },
+    //   {
+    //     model: Comment,
+    //     order: [["createdAt", "DESC"]],
+
+    //     include: [
+    //       {
+    //         model: User,
+    //       },
+    //     ],
+    //   },
+      
+    // ],
+    // order: [["createdAt", "DESC"]],
+  })
+    .then((posts) => res.status(200).json(posts))
+    .catch((error) => res.status(500).json({ error }));
 };
 
 module.exports.getPost = async ( req, res, next) => {
@@ -24,12 +45,12 @@ module.exports.getPost = async ( req, res, next) => {
 
 module.exports.deletePost = async ( req, res, next) => {
   const post = await Post.findOne({where: { id: req.params.id} });
-  
-  if (post.userId != req.auth ) {
-    return res.status(400).json({
-      error: new Error("Requête non autorisée"),
-    }),console.log('Vous navez pas les droits nécéssaires');
-  }
+
+  // if (post.userId != req.auth ) {
+  //   return res.status(400).json({
+  //     error: new Error("Requête non autorisée"),
+  //   }),console.log('Vous navez pas les droits nécéssaires');
+  // }
   Post.destroy({ where: { id: req.params.id } })
     .then(() => res.status(200).json({ message: "Post supprimé" }))
     .catch((error) => res.status(404).json({ error }));
@@ -52,7 +73,8 @@ module.exports.createPost = async (req, res, next) => {
       ...postObject, 
       imageUrl: imagePost,
       userId: userId,
-      user_name: user.user_name
+      user_name: user.user_name,
+      postId: postObject.id
       
   });
 
@@ -67,11 +89,11 @@ exports.updatePost = async (req, res, next) => {
   console.log("post.user_name", post.userId);
   console.log("req.auth", req.auth);
 
-  if (post.userId != req.auth ) {
-    return res.status(400).json({
-      error: new Error("Requête non autorisée"),
-    }),console.log('Vous navez pas les droits nécéssaires');
-  }
+  // if (post.userId != req.auth ) {
+  //   return res.status(400).json({
+  //     error: new Error("Requête non autorisée"),
+  //   }),console.log('Vous navez pas les droits nécéssaires');
+  // }
   
   const postObject = req.file
     ? {

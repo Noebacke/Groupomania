@@ -1,6 +1,9 @@
 @import './color.scss';
 
 .nav-bar{
+    .goupomania-logo{
+        margin: 0;
+    }
     display: flex;
     justify-content: space-between;
     background-color: white;

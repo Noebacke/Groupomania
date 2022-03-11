@@ -1,16 +1,18 @@
 const UserModel = require('../models/user');
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 
 module.exports.signUp = async (req, res, next) => {
+
   const { email, password: password, user_name } = req.body;
   const salt = await bcrypt.genSalt(10);
   const encryptedPassword = await bcrypt.hash(password, salt);
   const user = UserModel.create({
     email,
     password: encryptedPassword,
-    user_name,
+    user_name
   });
 
   await user
@@ -40,8 +42,8 @@ module.exports.login = (req, res, next) => {
           }
           res.status(200).json({
             userId: user.id,
-            token: jwt.sign({ userId: user.id }, process.env.SECRET_TOKEN, {
-              expiresIn: "10h",
+            token: jwt.sign({ userId: user.id, admin: user.admin }, process.env.SECRET_TOKEN, {
+              expiresIn: "24h",
             }),
             admin: user.admin,
             user_name: user.user_name,
@@ -55,17 +57,40 @@ module.exports.login = (req, res, next) => {
     .catch(error => res.status(500).json({error}));
 };
 
-module.exports.update = async (req,res, next) => {
+module.exports.updatePassword = async (req,res, next) => {
+  // const user = await UserModel.findOne({where : {id: req.params.id}})
+  // const { password } = req.body.password;
+  // const salt = await bcrypt.genSalt(10);
+  // const encryptedPassword = await bcrypt.hash(password, salt);
+
+  // user.update(
+  //   { 
+  //     password : encryptedPassword,
+  //   }
+  // )
+  //   .then(() => res.status(200).json({ message: "User modifié" }))
+  //   .catch((error) => res.status(404).json({ error }));
+}
+module.exports.updateName = async (req,res, next) => {
   const user = await UserModel.findOne({where : {id: req.params.id}})
-  const { email, password: password, user_name } = req.body;
+  const { userName } = req.body.user_name;
+  user.update(
+    { 
+      user_name : userName,
+    }
+  )
+    .then(() => res.status(200).json({ message: "User modifié" }))
+    .catch((error) => res.status(404).json({ error }));
+}
+module.exports.updateEmail = async (req,res, next) => {
+  const user = await UserModel.findOne({where : {id: req.params.id}})
+  const { password } = req.body.password;
   const salt = await bcrypt.genSalt(10);
   const encryptedPassword = await bcrypt.hash(password, salt);
 
   user.update(
     { 
-      email,
       password : encryptedPassword,
-      user_name
     }
   )
     .then(() => res.status(200).json({ message: "User modifié" }))
@@ -78,6 +103,8 @@ module.exports.getUser = async ( req, res, next) => {
   .then(user => {
     userProfil.id = user.id
     userProfil.user_name = user.user_name
+    userProfil.admin = user.admin
+    userProfil.email = user.email
     
     res.status(200).json(userProfil)
   })

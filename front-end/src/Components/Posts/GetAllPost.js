@@ -27,11 +27,8 @@ const GetAllPost = () => {
 
     return (
         
-        <div>
-            <div className='nav-bar'>  
-                <img src="../../img/icon-groupomania.png" className="goupomania-logo"></img>
-                <NavBar/>   
-            </div>
+        <div>  
+            <NavBar/>   
             <br/>
             <button className='button-create-post' onClick={handleSubmit}>
                 <i class="fas fa-plus-circle"></i>

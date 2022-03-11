@@ -53,11 +53,8 @@ const CreatePost = () => {
     };
     return (
       <div>
-        <div>
-          <div className="nav-bar">
-            <img src="./img/logo.png" className="goupomania-logo"></img>
+        <div>  
             <NavBar />
-          </div>
         </div>
         <form className="form-conteneur">
           <h3>Création du post</h3>

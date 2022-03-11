@@ -8,7 +8,9 @@ router.post('/signup',password,userController.signUp);
 router.post('/login', userController.login);
 
 //update
-router.put('/:id', auth,userController.update);
-router.get('/:id', auth,userController.getUser);
+router.put('/:id', auth,userController.updatePassword);
+router.put('/:id', auth,userController.updateName);
+router.put('/:id', auth,userController.updateEmail);
+router.get('/', auth,userController.getUser);
 
 module.exports = router;

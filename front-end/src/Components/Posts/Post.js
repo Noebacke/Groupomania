@@ -29,10 +29,6 @@ const Post = (props) => {
       getAutorisation(props)
     }, []);
 
-    const handleGetComments = () =>{
-        <GetAllComments/>
-    }
-
     const handleUpdatePost = () => {
         navigate('/updatepost/' + '?' + props.id ) 
     }
@@ -63,7 +59,7 @@ const Post = (props) => {
               : null
             }
             <div className="show-comments">
-              <button onClick={handleGetComments}>
+              <button onClick={()=>setShowComment(!showComment)}>
                 <i class="far fa-comment-dots"></i>
               </button>
             </div>
@@ -80,7 +76,7 @@ const Post = (props) => {
           </div>
           
         </div>
-        <GetAllComments/>
+        {showComment && <GetAllComments/>}
       </div>
     );
 };

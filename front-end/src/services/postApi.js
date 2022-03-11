@@ -7,7 +7,6 @@ function create(post) {
 }
 
 function update (post) {
-    
     const postId = window.location.search.slice(1);
     return axios.put(URL_POSTS +  `/${postId}`, post)
 }

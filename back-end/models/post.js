@@ -21,6 +21,14 @@ const db = require('../config/db');
         },
         userId: {
           type: DataTypes.STRING,
+        },
+        createdAt: {
+          type: DataTypes.DATE,
+          
+        },
+        updatedAt: {
+          type: DataTypes.DATE,
+          
         }
       },
       {}
@@ -28,14 +36,17 @@ const db = require('../config/db');
 
 Post.associate = models => {
   
-  Post.hasOne(models.user, {
-    onDelete: 'cascade',
+  //  User
+  Post.belongsTo(models.User, {
+    foreignKey: "userId",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+    hooks: true,
   });
 
-  Post.hasMany(models.comment, {
-    as: 'comments',
-    foreignKey: 'postId',
-    onDelete: 'cascade'
+  // Comment
+  Post.hasMany(models.Comment, {
+    foreignKey: "postId",
   });
 
 }

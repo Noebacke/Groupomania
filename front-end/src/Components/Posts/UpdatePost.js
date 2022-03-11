@@ -38,8 +38,9 @@ const UpdatePost = () => {
             
         })
     };
-    const handlePicture = ()=>{
-
+    const handlePicture = (event)=>{
+        setPostPicture(URL.createObjectURL(event.target.files[0]));
+        setFile(event.target.files[0]);
     }
     const handleSubmit = async (event)=>{
         event.preventDefault()
@@ -55,44 +56,50 @@ const UpdatePost = () => {
     }
 
     return (
+      <div>
         <div>
-            <div>
-                <div className='nav-bar'>  
-                    <img src="" className="goupomania-logo"></img>
-                    <NavBar/>   
-                </div>
-            </div>
-            <div>
-                <form className='form-conteneur'>
-                <h3>Modification du post</h3>
-                <br/>
-                Titre 
-                <input className='title' required onChange={handleChangeTitle}></input>
-                <br/>
-                Description  
-                <input className='description' required onChange={handleChangeDescription}></input>
-                <br/>
-                Images  
-                <br/>
-                <br/>
-                <input 
-                    className='img-of-newpost' 
-                    name ="file"type="file" 
-                    accept = ".jpg, .jpeg, .png"
-                    alt="img-of-post" 
-                    onChange={(event)=> handlePicture(event)}>
-                </input>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <button className ="update-post"onClick={handleSubmit}>
-                    Modifier le post
-                </button>
-                </form>
-            </div>
+            <NavBar />
         </div>
-        
+        <div>
+          <form className="form-conteneur">
+            <h3>Modification du post</h3>
+            <br />
+            Titre
+            <input
+              className="title"
+              required
+              onChange={handleChangeTitle}
+            ></input>
+            <br />
+            Description
+            <input
+              className="description"
+              required
+              onChange={handleChangeDescription}
+            ></input>
+            <br />
+            Images
+            <br />
+            <br />
+            <input
+              className="img-of-newpost"
+              name="file"
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              alt="img-of-post"
+              onChange={(event) => handlePicture(event)}
+            ></input>
+            <br />
+            <br />
+            <img src={postPicture} alt="" />
+            <br />
+            <br />
+            <button className="update-post" onClick={handleSubmit}>
+              Modifier le post
+            </button>
+          </form>
+        </div>
+      </div>
     );
 };
 
