@@ -9,8 +9,13 @@ function update (user) {
     const userId = window.location.search.slice(1);
     return axios.put(URL_GET_USER +  `/${userId}`, user)
 }
+function deleteUser (user) {
+    const userId = window.location.search.slice(1);
+    return axios.delete(URL_GET_USER +  `/${userId}`, user)
+}
 
 export default {
     create, 
-    update 
+    update,
+    deleteUser
 };

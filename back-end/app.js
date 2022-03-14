@@ -4,9 +4,11 @@ const app = express();
 const db = require('../back-end/config/db')
 const helmet = require("helmet");
 const User = require('./models/user');
-const Posts = require('./models/post');
+const Post = require('./models/post');
 const Comment = require('./models/comment')
-
+const postRoutes = require("./routes/post.routes");
+const commentRoutes = require("./routes/comment.routes");
+const userRoutes = require('./routes/user.routes');
 
 
 //Se connecter à la base de donnée choisie
@@ -16,6 +18,11 @@ try {
 } catch (err) {
     console.error('impossible de se connecter, erreur suivante :', error);
 }
+
+//Associations
+
+Post.hasMany(Comment)
+Comment.hasOne(Post)
 
 
 app.use((req, res, next) => {
@@ -30,11 +37,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/images', express.static('images'));
 
-
-//routes files
-const postRoutes = require("./routes/post.routes");
-const commentRoutes = require("./routes/comment.routes");
-const userRoutes = require('./routes/user.routes')
 
 //routes
 app.use("/api/post", postRoutes);

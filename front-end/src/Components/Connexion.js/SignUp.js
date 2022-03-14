@@ -45,6 +45,7 @@ const SignUp = () => {
   const handleChangePassword1 = (event) => {
       const currentTarget = event.currentTarget;
       const {value} = currentTarget;
+      console.log("password1", value);
       setverifyPassword({
         ...verifyPassword,
         password1: value,
@@ -54,6 +55,7 @@ const SignUp = () => {
   const handleChangePassword2 = (event) => {
       const currentTarget = event.currentTarget;
       const {value} = currentTarget;
+      console.log("password2", value);
       setverifyPassword({
         ...verifyPassword,
         password2: value,
@@ -64,20 +66,21 @@ const SignUp = () => {
 
     event.preventDefault();
     console.log(newUser);
-    if(verifyPassword.password1===verifyPassword.password2){
+    if(verifyPassword.password1==verifyPassword.password2){
       setNewUser({
         ...newUser,
         password: verifyPassword.password1,
       })
+      try {
+        await userApi.create(newUser);
+        navigate("/getallpost", { replace: true });
+      } catch (error) {
+        console.log( "L'utilisateur n'a pas pu être crée");
+      }
     }else{
       console.error("Les mots de passe saisis ne sont pas similaires");
     }
-    try {
-      await userApi.create(newUser);
-      navigate("/getallpost", { replace: true });
-    } catch (error) {
-      console.log( "L'utilisateur n'a pas pu être crée");
-    }
+    
   };
 
   return (

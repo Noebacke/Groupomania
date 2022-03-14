@@ -4,7 +4,7 @@ import commentsApi from '../../services/commentsApi';
 import NavBar from '../../NavBar/NavBar';
 
 
-const CreateComment = () => {
+const CreateComment = (props) => {
     const navigate = useNavigate();
     const [comment, setComment] = useState({})
 
@@ -12,6 +12,8 @@ const CreateComment = () => {
         event.preventDefault();
         
         try{
+            
+            console.log("comment",comment);
             const data = commentsApi.create(comment);
             navigate('/')
             
@@ -25,17 +27,13 @@ const CreateComment = () => {
         setComment({
             ...comment,
             [name]: value,
+            postId: props.postId
+            
         })
     }
 
     return (
       <div>
-        <div>
-          <div className="nav-bar">
-            <img src="./img/logo.png" className="goupomania-logo"></img>
-            <NavBar />
-          </div>
-        </div>
         <form className="form-conteneur">
           <h3>Commentaire</h3>
           Description :

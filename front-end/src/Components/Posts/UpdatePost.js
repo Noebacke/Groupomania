@@ -49,7 +49,7 @@ const UpdatePost = () => {
         if (file) formData.append("file", file);
         try {
             await postApi.update(updatePost)
-            navigate('/getallpost', { replace: true })
+            navigate('/getallpost')
         }catch(error){
             console.log(error, "Le post n'a pas pu être crée");
         }

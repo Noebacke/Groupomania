@@ -1,6 +1,8 @@
 'use strict';
 const { DataTypes } = require('sequelize');
 const db = require('../config/db');
+const User = require('../models/user')
+// const Comment = require('../models/comment')
 
     const Post = db.define(
       "post",
@@ -33,23 +35,6 @@ const db = require('../config/db');
       },
       {}
     );
-
-Post.associate = models => {
-  
-  //  User
-  Post.belongsTo(models.User, {
-    foreignKey: "userId",
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE",
-    hooks: true,
-  });
-
-  // Comment
-  Post.hasMany(models.Comment, {
-    foreignKey: "postId",
-  });
-
-}
 
 module.exports = Post
 

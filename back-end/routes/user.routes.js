@@ -7,10 +7,11 @@ const auth = require('../middleware/auth');
 router.post('/signup',password,userController.signUp);
 router.post('/login', userController.login);
 
-//update
+//Profil-Page
 router.put('/:id', auth,userController.updatePassword);
 router.put('/:id', auth,userController.updateName);
 router.put('/:id', auth,userController.updateEmail);
+router.delete("/:id", auth, userController.deleteUser);
 router.get('/', auth,userController.getUser);
 
 module.exports = router;

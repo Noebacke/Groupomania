@@ -27,6 +27,7 @@ const Post = (props) => {
     
     useEffect( () => {
       getAutorisation(props)
+      console.log(props.comments);
     }, []);
 
     const handleUpdatePost = () => {
@@ -76,7 +77,11 @@ const Post = (props) => {
           </div>
           
         </div>
-        {showComment && <GetAllComments/>}
+       
+        {showComment && <GetAllComments 
+          comments={props.comments}
+          postId={props.id}
+          />}
       </div>
     );
 };

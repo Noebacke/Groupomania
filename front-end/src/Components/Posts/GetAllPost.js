@@ -41,6 +41,7 @@ const GetAllPost = () => {
                     imageUrl= {post.imageUrl}
                     title={post.title} 
                     id= {post.id} 
+                    comments= {post.Comments}
                 />)}
             </div>
         </div>

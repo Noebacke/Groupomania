@@ -3,7 +3,6 @@ const { DataTypes } = require('sequelize/dist');
 const db = require('../config/db');
 
 
-
   const User = db.define('User', {
     
     email: {
@@ -22,28 +21,12 @@ const db = require('../config/db');
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-  }, {
-    
+    postId: {
+      type: DataTypes.STRING,
+      
+    }
+  }, {    
   });
-
-  User.associate = models => {
-
-    // Post
-    User.hasMany(models.Post, {
-      foreignKey: "userId",
-      onDelete: "CASCADE",
-      hooks: true,
-    });
-
-    // Comment
-    User.hasMany(models.Comment, {
-      foreignKey: "userId",
-      onDelete: "CASCADE",
-      onUpdate: "CASCADE",
-      hooks: true,
-    });
-
-  }
 
 module.exports = User;
 

@@ -1,14 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { URL_GET_USER } from '../../config';
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import jwt_decode from "jwt-decode";
 import UpdateProfilName from '../Profil/UpdateProfilName';
 import UpdateProfilPassword from './UpdateProfilPassword';
 import UpdateProfilEmail from './UpdateProfilEmail';
+import userApi from '../../services/userApi';
 
 const Profile = () => {
-
+    const navigate = useNavigate()
     const [user, setUser] = useState([])
     const [email, setEmail] = useState(false)
     const [userName, setUserName] = useState(false)
@@ -24,6 +26,15 @@ const Profile = () => {
         })
         .catch( "Une erreur est survenue lors du chargement de la page")
     }, []);
+
+    const handleSubmit = async ()=> {
+        await userApi.deleteUser(user)
+        .then( 
+            "Le compte à correctement été supprimé",
+            localStorage.clear(),
+            navigate('/')
+        )
+    }
 
     return (
         <div className='profil-conteneur'>
@@ -66,6 +77,11 @@ const Profile = () => {
                         <i class="far fa-edit"></i>
                     </button>
                 </div>
+            </div>
+            <div className='delete-profil'>
+                <button className='button-delete-profil' onClick={handleSubmit}>
+                        Supprimer le compte
+                </button>
             </div>
         </div>
     );

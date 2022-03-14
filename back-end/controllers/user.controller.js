@@ -84,17 +84,17 @@ module.exports.updateName = async (req,res, next) => {
 }
 module.exports.updateEmail = async (req,res, next) => {
   const user = await UserModel.findOne({where : {id: req.params.id}})
-  const { password } = req.body.password;
-  const salt = await bcrypt.genSalt(10);
-  const encryptedPassword = await bcrypt.hash(password, salt);
+  // const { password } = req.body.password;
+  // const salt = await bcrypt.genSalt(10);
+  // const encryptedPassword = await bcrypt.hash(password, salt);
 
-  user.update(
-    { 
-      password : encryptedPassword,
-    }
-  )
-    .then(() => res.status(200).json({ message: "User modifié" }))
-    .catch((error) => res.status(404).json({ error }));
+  // user.update(
+  //   { 
+  //     password : encryptedPassword,
+  //   }
+  // )
+  //   .then(() => res.status(200).json({ message: "User modifié" }))
+  //   .catch((error) => res.status(404).json({ error }));
 }
 
 module.exports.getUser = async ( req, res, next) => {
@@ -110,3 +110,22 @@ module.exports.getUser = async ( req, res, next) => {
   })
   .catch(error => res.status(404).json({ error }))
 }
+
+exports.deleteUser = async (req, res, next) => {
+
+  const user = await UserModel.findOne({where: { id: req.auth} });
+
+  if (req.body.userId != req.auth && user.admin != true) {
+    return res.status(400).json({
+      error: new Error("Requête non autorisée"),
+    }),console.log('Vous navez pas les droits nécéssaires');
+  }
+
+  user.destroy({ where: { id: req.auth } })
+  .then(() => {
+    res.status(200).json({ message: "Utilisateur supprimer avec succés" });
+  })
+  .catch((error) =>
+      res.status(404).json({ error: "erreur lors de la suppression" })
+  );
+};

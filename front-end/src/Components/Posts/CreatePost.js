@@ -43,7 +43,7 @@ const CreatePost = () => {
       event.preventDefault();
       const formData = new FormData();
       formData.append("post", JSON.stringify(newPost));
-      if (file) formData.append("file", file);
+      if (file) {formData.append("file", postPicture)};
       try {
         await postApi.create(formData);
         navigate("/getallpost");

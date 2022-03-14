@@ -72,9 +72,12 @@ button {
     .nav-post {
         display: flex;
         padding: 15px;
-        background-color: $grey-reddit;
+        background-color: $white-reddit;
         justify-content: space-around;
         align-items: center !important;
+        button{
+            background-color: $white-reddit;
+        }
         i{
             font-size: 17px;
         }
