@@ -8,10 +8,9 @@ router.post('/signup',password,userController.signUp);
 router.post('/login', userController.login);
 
 //Profil-Page
-router.put('/:id', auth,userController.updatePassword);
-router.put('/:id', auth,userController.updateName);
-router.put('/:id', auth,userController.updateEmail);
+router.put('/update', auth,userController.updateUser);
 router.delete("/:id", auth, userController.deleteUser);
 router.get('/', auth,userController.getUser);
+router.get('/', auth,userController.getAllUser);
 
 module.exports = router;

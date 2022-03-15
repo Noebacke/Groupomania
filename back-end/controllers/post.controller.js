@@ -5,7 +5,7 @@ const Comment = require('../models/comment')
 module.exports.getAllPosts = async (req, res, next) => {
   await Post.findAll({
     include: Comment,
-    order: [["createdAt", "DESC"]],
+    order: [["createdAt", "DESC",]],
   })
     .then((posts) => res.status(200).json(posts))
     .catch((error) => res.status(500).json({ error }));
@@ -69,7 +69,7 @@ module.exports.createPost = async (req, res, next) => {
     .catch((error) => res.status(404).json({ message : "Il y a eu une erreur suite à la création du post" }));
 };
 
-exports.updatePost = async (req, res, next) => {
+module.exports.updatePost = async (req, res, next) => {
   const post = await Post.findOne({where: { id: req.params.id} });
   const user = await User.findOne({where: { id: req.auth} });
   
@@ -89,8 +89,8 @@ exports.updatePost = async (req, res, next) => {
 
   post.update({
     ...postObject,
-      title: postObject.title,
-      description: postObject.description,
+      title: postObject.title ? postObject.title : undefined,
+      description: postObject.description ? postObject.description : undefined,
       imageUrl: postObject.imageUrl,
     })
     .then(() => res.status(200).json({ message: "Post modifié" }))

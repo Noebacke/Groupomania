@@ -17,6 +17,7 @@ const GetAllPost = () => {
         .then( res => {
             const allPosts = res.data
             setPosts(allPosts)
+
         })
     }, []);
 
@@ -42,6 +43,7 @@ const GetAllPost = () => {
                     title={post.title} 
                     id= {post.id} 
                     comments= {post.Comments}
+                    admin= {post.admin}
                 />)}
             </div>
         </div>

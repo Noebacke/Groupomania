@@ -23,7 +23,10 @@ try {
 
 Post.hasMany(Comment)
 Comment.hasOne(Post)
-
+User.hasMany(Post)
+Post.hasOne(User)
+Comment.hasOne(User)
+User.hasMany(Comment)
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin',  `${process.env.CLIENT_URL}`);

@@ -22,7 +22,7 @@ const Profile = () => {
             const profil = res.data
             console.log(profil);
             setUser(profil)
-            
+            console.log("props.adminnn",profil.admin);
         })
         .catch( "Une erreur est survenue lors du chargement de la page")
     }, []);
@@ -46,12 +46,11 @@ const Profile = () => {
                 <div className='data-profil'>
                     {user.user_name}
                     <div>
-                        {userName && <UpdateProfilName/>}
-                        {/* {user.map( (user) => {<UpdateProfilName
+                        {userName && <UpdateProfilName
                             description={user.description}
                             user_name ={user.user_name}
                             id= {user.id} 
-                        />})} */}
+                        />}
                     </div>
                     <button className='update-profil'onClick={()=> setUserName(!userName)}>
                         <i class="far fa-edit"></i>

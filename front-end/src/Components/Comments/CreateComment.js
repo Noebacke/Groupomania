@@ -15,6 +15,7 @@ const CreateComment = (props) => {
             
             console.log("comment",comment);
             const data = commentsApi.create(comment);
+            window.location.reload();
             navigate('/')
             
         }catch(error){

@@ -15,7 +15,6 @@ const SignUp = () => {
     
   });
   const [verifyPassword, setverifyPassword] = useState({
-    password1: "",
     password2:""
   })
   const [users, setUsers] = useState([]);
@@ -42,13 +41,13 @@ const SignUp = () => {
     });
   };
 
-  const handleChangePassword1 = (event) => {
+  const handleChangePassword = (event) => {
       const currentTarget = event.currentTarget;
       const {value} = currentTarget;
       console.log("password1", value);
-      setverifyPassword({
-        ...verifyPassword,
-        password1: value,
+      setNewUser({
+        ...newUser,
+        password: value,
       });
   };
 
@@ -66,19 +65,17 @@ const SignUp = () => {
 
     event.preventDefault();
     console.log(newUser);
-    if(verifyPassword.password1==verifyPassword.password2){
-      setNewUser({
-        ...newUser,
-        password: verifyPassword.password1,
-      })
+    if(verifyPassword.password2 != newUser.password){
+      alert("Les mots de passe saisis ne sont pas similaires");
+    }else{
       try {
         await userApi.create(newUser);
+        alert('utilisateur crée')
         navigate("/getallpost", { replace: true });
+        
       } catch (error) {
         console.log( "L'utilisateur n'a pas pu être crée");
       }
-    }else{
-      console.error("Les mots de passe saisis ne sont pas similaires");
     }
     
   };
@@ -102,7 +99,7 @@ const SignUp = () => {
         <p>
           Votre mot de passe :
           <br />
-          <input type="password" required onChange={handleChangePassword1} />
+          <input type="password" required onChange={handleChangePassword} />
         </p>
         <p>
           Confirmez votre mot de passe :

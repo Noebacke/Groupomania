@@ -8,8 +8,7 @@ import Axios from 'axios';
 const UpdatePost = () => {
     const [updatePost, setUpdatePost] = useState({
         title:"",
-        description:"",
-        imageUrl:""
+        description:""
     });
     const [posts, setPosts] = useState([]);
     const [file, setFile] = useState();
@@ -46,9 +45,10 @@ const UpdatePost = () => {
         event.preventDefault()
         const formData = new FormData ();
         formData.append("post",JSON.stringify(updatePost));
+        console.log("file", file);
         if (file) formData.append("file", file);
         try {
-            await postApi.update(updatePost)
+            await postApi.update(formData)
             navigate('/getallpost')
         }catch(error){
             console.log(error, "Le post n'a pas pu être crée");

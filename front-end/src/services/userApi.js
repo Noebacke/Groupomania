@@ -7,7 +7,7 @@ function create(user) {
 }
 function update (user) {
     const userId = window.location.search.slice(1);
-    return axios.put(URL_GET_USER +  `/${userId}`, user)
+    return axios.put(URL_GET_USER +  `/update`, user)
 }
 function deleteUser (user) {
     const userId = window.location.search.slice(1);

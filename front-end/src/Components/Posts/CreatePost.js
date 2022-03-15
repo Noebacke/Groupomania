@@ -16,7 +16,9 @@ const CreatePost = () => {
     
     const handlePicture = (event) => {
       setPostPicture(URL.createObjectURL(event.target.files[0]));
+      console.log("file",postPicture);
       setFile(event.target.files[0]);
+      
     };
 
     const handleChangeTitle = (event) => {
@@ -43,7 +45,7 @@ const CreatePost = () => {
       event.preventDefault();
       const formData = new FormData();
       formData.append("post", JSON.stringify(newPost));
-      if (file) {formData.append("file", postPicture)};
+      if (file) {formData.append("file", file)};
       try {
         await postApi.create(formData);
         navigate("/getallpost");

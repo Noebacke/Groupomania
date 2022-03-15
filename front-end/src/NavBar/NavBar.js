@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { URL_GET_USER } from '../config';
 
-const NavBar = () => {
+const NavBar = (props) => {
   
   const [user, setUser] = useState([])
   const navigate = useNavigate()

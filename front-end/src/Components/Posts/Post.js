@@ -9,19 +9,19 @@ import GetAllComments from '../Comments/GetAllComments';
 
 
 const Post = (props) => {
-    const userId = localStorage.getItem("user_Id")
-    const userName = localStorage.getItem("user_name")
+    
     const navigate = useNavigate()
     const [showComment, setShowComment] = useState(false);
-    const [autorisation, setAutorisation] = useState(true)
-
+    const [autorisation, setAutorisation] = useState(false)
+  // récupérer l'admin dans les props 
     const getAutorisation = (props) => {
-        if(localStorage.getItem("admin") === true){
+      
+        if(props.admin == true){
           return setAutorisation(true)
         }
-        if(localStorage.getItem("random_user") === true && userName === props.user_name){
-          return setAutorisation(true)
-        }
+        // if(userName === props.user_name){
+        //   return setAutorisation(true)
+        // }
     }
     // il faut utiliser la fonction dans un use Effect
     

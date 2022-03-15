@@ -1,5 +1,5 @@
 const UserModel = require('../models/user');
-
+const Post = require("../models/post");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -71,12 +71,15 @@ module.exports.updatePassword = async (req,res, next) => {
   //   .then(() => res.status(200).json({ message: "User modifié" }))
   //   .catch((error) => res.status(404).json({ error }));
 }
-module.exports.updateName = async (req,res, next) => {
-  const user = await UserModel.findOne({where : {id: req.params.id}})
-  const { userName } = req.body.user_name;
+module.exports.updateUser = async (req,res, next) => {
+  console.log("on passe bien ici");
+  const user = await UserModel.findOne({where : {id: req.auth}})
+  const userName = req.body.user_name;
+  console.log("userName",userName);
   user.update(
     { 
       user_name : userName,
+      email: req.body.email
     }
   )
     .then(() => res.status(200).json({ message: "User modifié" }))
@@ -84,7 +87,7 @@ module.exports.updateName = async (req,res, next) => {
 }
 module.exports.updateEmail = async (req,res, next) => {
   const user = await UserModel.findOne({where : {id: req.params.id}})
-  // const { password } = req.body.password;
+  // const password  = req.body.password;
   // const salt = await bcrypt.genSalt(10);
   // const encryptedPassword = await bcrypt.hash(password, salt);
 
@@ -111,15 +114,9 @@ module.exports.getUser = async ( req, res, next) => {
   .catch(error => res.status(404).json({ error }))
 }
 
-exports.deleteUser = async (req, res, next) => {
+module.exports.deleteUser = async (req, res, next) => {
 
   const user = await UserModel.findOne({where: { id: req.auth} });
-
-  if (req.body.userId != req.auth && user.admin != true) {
-    return res.status(400).json({
-      error: new Error("Requête non autorisée"),
-    }),console.log('Vous navez pas les droits nécéssaires');
-  }
 
   user.destroy({ where: { id: req.auth } })
   .then(() => {
@@ -129,3 +126,12 @@ exports.deleteUser = async (req, res, next) => {
       res.status(404).json({ error: "erreur lors de la suppression" })
   );
 };
+
+module.exports.getAllUser = async (req,res,next) =>{
+  UserModel.findAll({
+    include: Post,
+    order: [["createdAt", "DESC",]],
+  })
+  .then((users) => res.status(200).json(users))
+  .catch((error) => res.status(500).json({ error }));
+}
