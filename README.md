@@ -63,21 +63,27 @@ Pour la partie back-end:
     -Une fois la base de donnée bien synchronisée vous pouvez commenter à nouveau ce qu'il y a dans l'app.js car les données de votre site seront à chaque fois écrasée si vous ne le faites pas.
 
 Pour la partie front-end: 
+
+    - J'ai choisi le framework React pour développer ma partie front-end
     - Installez aussi la partie node module
     - faites cd front-end dans un nouveau terminal
     - rentrez 'npm start'
+    
     - Vous serez sur la page de connexion, vous pouvez sois crée un compte, sois en utiliser un qui existe déjà
     - Pour le mail je n'ai pas mis de regExp, en d'autre terme vous n'avez pas d'obligation de caractères
     - Pour le mot de passe il doit faire au moins une majuscule, un chiffre et une minuscule le tout en 10 caractères au minimum
     - Une fois connecté, vous avez les posts qui s'affichent devant vous, vous pouvez si vous êtes admin ou propriétaire de ce post le supprimer ou le modifier
     - Pour afficher les commentaires cliquez sur le logo au milieu du post, vous aurez une croix pour en crée un
-    - Pour crée un nouveau post la même croix que pour les commentaires est affiché, pour un post il y a obligation d'un titre et d'une description pour qu'il soit crée, les images sont facultatives.
+    - Pour crée un nouveau post la même croix que pour les commentaires est affiché, pour un post il y a obligation d'un titre et d'une description pour qu'il soit crée, les images sont facultatives
+
     - Plus haut vous pouvez voir deux bouton, un bouton pour se déconnecter et un pour accéder à son profil
     - Le premier permettra de vous deconnecter du site
     - Le 2ème vous permettra d'accéder aux données de votre profil et d'en faire des modifications si tel est votre souhait
     - Un bouton supprimer le profil est également tout en bas
+
     - Cliquez sur un des boutons de modifications pour afficher un petit formulaire dans lequel vous pourrez rentrer vos modifications
     - Si vous cliquez sur la partie description d'un post vous serez rediriger vers le post en question, je n'ai pas beaucoup développé cette fonctionnalité car sans réel intérêt pour notre cas, il n'y a aucun plus par rapport à la page d'acceuil mais selon les exigeances clients on peut être ammenné à devoir faire cette fonctionnalité
+
     - j'ai choisi de donner la possibilité aux utilisateur d'exprimer leurs avis via les commentaires et non un système de likes/Dislikes
 
 
