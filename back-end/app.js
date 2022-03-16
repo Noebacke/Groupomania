@@ -46,25 +46,4 @@ app.use("/api/post", postRoutes);
 app.use("/api/comment", commentRoutes);
 app.use("/api/user" , userRoutes);
 
-// const initApp = async function (){
-//     await db.sync({ force: true})
-//     console.log('Database synced');
-//     const user1 = User.build({ email: "noeebacke@gmail.com", password:'$2b$10$/rbyKq49T.RziNTGbmI9YeNE.TiFuWpd7stLgYZgr4DQcqPvAPozq', user_name: "Noé", userId: 1});
-//     user1.save();
-//     const user2 = User.build({ email: 'noe.backepro@gmail.com', password:'$2b$10$/rbyKq49T.RziNTGbmI9YeNE.TiFuWpd7stLgYZgr4DQcqPvAPozq', user_name:"Nono", admin: true, userId: 2});
-//     user2.save();
-//     const post1 = Posts.build({ title: 'post13',description: 'Hello depuis un faux post', user_name: `${user1.user_name}`});
-//     post1.save();
-//     const post2 = Posts.build({ title: 'post23',description: 'Hello depuis le 2ème faux post', user_name: `${user2.user_name}`});
-//     post2.save();
-//     const comment1 = Comment.build({ description: 'Pas mal !', user_name: `${user1.user_name}`})
-//     comment1.save()
-//     const comment2 = Comment.build({ description: 'Joli !', user_name: `${user2.user_name}` })
-//     comment2.save()
-//     // mettre le compte admin ici 
-// } 
-
-// Rajouter une route pour afficher les images dans le cour
-
-// initApp();
 module.exports = app;

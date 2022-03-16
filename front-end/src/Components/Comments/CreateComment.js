@@ -28,8 +28,7 @@ const CreateComment = (props) => {
         setComment({
             ...comment,
             [name]: value,
-            postId: props.postId
-            
+            postId: props.postId    
         })
     }
 

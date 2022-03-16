@@ -2,9 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import DeleteButton from '../Posts/DeleteButton';
 import {useNavigate} from 'react-router-dom'
-import { URL_COMMENTS, URL_POSTS } from '../../config';
-import UpdatePost from './UpdatePost';
-import postApi from '../../services/postApi';
+import { URL_POSTS } from '../../config';
 import GetAllComments from '../Comments/GetAllComments';
 
 
@@ -12,22 +10,25 @@ const Post = (props) => {
     
     const navigate = useNavigate()
     const [showComment, setShowComment] = useState(false);
-    const [autorisation, setAutorisation] = useState(false)
-  // récupérer l'admin dans les props 
-    const getAutorisation = (props) => {
-      
-        if(props.admin == true){
+    const [autorisation, setAutorisation] = useState(false);
+    const admin = localStorage.getItem('admin')
+    const name = localStorage.getItem('name')
+    const userName = props.user_name
+    console.log("props.username",userName, admin);
+  
+    const getAutorisation = () => {
+        if(admin == "true"){
+          return setAutorisation(true)
+        } 
+        if(name == userName){
           return setAutorisation(true)
         }
-        // if(userName === props.user_name){
-        //   return setAutorisation(true)
-        // }
+        return setAutorisation(false)
     }
-    // il faut utiliser la fonction dans un use Effect
+    
     
     useEffect( () => {
-      getAutorisation(props)
-      console.log(props.comments);
+      getAutorisation()
     }, []);
 
     const handleUpdatePost = () => {
@@ -65,15 +66,17 @@ const Post = (props) => {
               </button>
             </div>
             
-
-            <DeleteButton
-              onDelete={() => {
-                axios.delete(URL_POSTS + `/${props.id}`).then((res) => {
-                  window.location.reload();
-                  console.log(res);
-                });
-              }}
-            />
+            { autorisation ?
+              <DeleteButton
+                onDelete={() => {
+                  axios.delete(URL_POSTS + `/${props.id}`).then((res) => {
+                    window.location.reload();
+                    console.log(res);
+                  });
+                }}
+              />
+              : null
+            }
           </div>
           
         </div>

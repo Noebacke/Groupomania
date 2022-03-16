@@ -57,48 +57,27 @@ module.exports.login = (req, res, next) => {
     .catch(error => res.status(500).json({error}));
 };
 
-module.exports.updatePassword = async (req,res, next) => {
-  // const user = await UserModel.findOne({where : {id: req.params.id}})
-  // const { password } = req.body.password;
-  // const salt = await bcrypt.genSalt(10);
-  // const encryptedPassword = await bcrypt.hash(password, salt);
-
-  // user.update(
-  //   { 
-  //     password : encryptedPassword,
-  //   }
-  // )
-  //   .then(() => res.status(200).json({ message: "User modifié" }))
-  //   .catch((error) => res.status(404).json({ error }));
-}
 module.exports.updateUser = async (req,res, next) => {
-  console.log("on passe bien ici");
+  
   const user = await UserModel.findOne({where : {id: req.auth}})
   const userName = req.body.user_name;
-  console.log("userName",userName);
+  const email = req.body.email
+  const password = req.body.password;
+  console.log("password", password);
+  const salt = await bcrypt.genSalt(10);
+  const encryptedPassword = await bcrypt.hash(password, salt);
+  
   user.update(
     { 
       user_name : userName,
-      email: req.body.email
+      email: email,
+      password: encryptedPassword
     }
   )
     .then(() => res.status(200).json({ message: "User modifié" }))
     .catch((error) => res.status(404).json({ error }));
 }
-module.exports.updateEmail = async (req,res, next) => {
-  const user = await UserModel.findOne({where : {id: req.params.id}})
-  // const password  = req.body.password;
-  // const salt = await bcrypt.genSalt(10);
-  // const encryptedPassword = await bcrypt.hash(password, salt);
 
-  // user.update(
-  //   { 
-  //     password : encryptedPassword,
-  //   }
-  // )
-  //   .then(() => res.status(200).json({ message: "User modifié" }))
-  //   .catch((error) => res.status(404).json({ error }));
-}
 
 module.exports.getUser = async ( req, res, next) => {
   const userProfil = {}

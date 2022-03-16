@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { URL_GET_USER } from '../../config';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import userApi from '../../services/userApi';
 
 const UpdateProfilPassword = () => {
 
@@ -24,15 +25,17 @@ const UpdateProfilPassword = () => {
         const currentTarget = event.currentTarget;
         const { value } = currentTarget;
         console.log("value",value);
-        setUpdateProfil(value)
+        setUpdateProfil({
+            password:value
+        })
     }
-    const handleSubmit = (event)=>{
+    const handleSubmit = async (event)=>{
         event.preventDefault()
         try {
-            axios.put(URL_GET_USER + `/${user.id}`, updateProfil)
-            window.location.reload();
+            await userApi.update(updateProfil)
+            window.location.reload(); 
         }catch(error){
-            console.log(error, "Le mot de passe n'a pas pu se mettre à jour");
+            console.log(error, "Le Changement de nom n'a pas abouti");
         }
     }
     return (

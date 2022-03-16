@@ -6,7 +6,6 @@ function create(user) {
     return axios.post(URL_SIGNUP, user)
 }
 function update (user) {
-    const userId = window.location.search.slice(1);
     return axios.put(URL_GET_USER +  `/update`, user)
 }
 function deleteUser (user) {

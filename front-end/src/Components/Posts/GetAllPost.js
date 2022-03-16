@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-const GetAllPost = () => {
+const GetAllPost = (props) => {
     const navigate = useNavigate()
     const [posts, setPosts] = useState([])
 
@@ -17,7 +17,7 @@ const GetAllPost = () => {
         .then( res => {
             const allPosts = res.data
             setPosts(allPosts)
-
+            console.log("props.admin",props.admin);
         })
     }, []);
 
@@ -35,7 +35,8 @@ const GetAllPost = () => {
                 <i class="fas fa-plus-circle"></i>
             </button>
             <div className='posts'>
-                { posts.map( post => <Post 
+                { posts.map( (post) => <Post 
+                    key={post.id}
                     description={post.description}
                     user_name ={post.user_name}
                     createdAt= {post.createdAt}
@@ -43,7 +44,7 @@ const GetAllPost = () => {
                     title={post.title} 
                     id= {post.id} 
                     comments= {post.Comments}
-                    admin= {post.admin}
+                    admin= {props.admin}
                 />)}
             </div>
         </div>

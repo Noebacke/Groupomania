@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import authApi from '../../services/authApi';
 import {Link,  Outlet,  useNavigate,} from 'react-router-dom'
 import axios from "axios";
+import GetAllPost from '../Posts/GetAllPost';
+
 
 
 const LogIn = () => {
@@ -35,7 +37,8 @@ const LogIn = () => {
             console.log("token",result);
             if (result.token){
                 navigate('/getallpost')
-            }
+                
+            }console.log("Le token n'existe pas");
         }
         catch(error){
             console.log(error, "Mot de passe incorrect ou compte non enregistré !");

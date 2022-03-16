@@ -12,6 +12,7 @@ import ProtectedRoute from './services/ProtectedRoute';
 import ProtectedRouteFrom from './services/ProtectedRouteForm';
 import CreateComment from './Components/Comments/CreateComment';
 const token = localStorage.getItem('token');
+// Pour maintenir une connexion active si il y a un token dans le header
 if(token){
   axios.defaults.headers["authorization"] =token
 }
@@ -36,7 +37,7 @@ const App = () => {
     </div>
   );
 };
-// On peut utiliser une variable dans un url avec react router
+
 
 export default App;
  

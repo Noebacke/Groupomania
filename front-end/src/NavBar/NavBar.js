@@ -48,6 +48,5 @@ const NavBar = (props) => {
     );
 };
 
-// faire en sorte que le token sois clean 
 
 export default NavBar;

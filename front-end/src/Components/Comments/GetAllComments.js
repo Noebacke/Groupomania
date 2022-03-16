@@ -27,6 +27,7 @@ const GetAllComments = (props) => {
           />}
             {comment.map((comment) => (
           <Comments
+            key={comment.id}
             description={comment.description}
             user_name={comment.user_name}
             id={comment.id}
