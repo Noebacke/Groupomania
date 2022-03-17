@@ -22,6 +22,7 @@ const UpdateProfilName = (props) => {
         event.preventDefault()
         try {
             await userApi.update(updateProfil)
+            alert('Nom mis à jour')
             window.location.reload(); 
         }catch(error){
             console.log(error, "Le Changement de nom n'a pas abouti");

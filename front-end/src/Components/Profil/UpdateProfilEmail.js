@@ -32,9 +32,10 @@ const UpdateProfilEmail = () => {
         event.preventDefault()
         try {
             await userApi.update(updateProfil)
+            alert('Email mis à jour')
             window.location.reload(); 
         }catch(error){
-            console.log(error, "Le Changement de nom n'a pas abouti");
+            console.log(error, "Le Changement de mail n'a pas abouti");
         }
     }
     return (

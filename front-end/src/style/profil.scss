@@ -1,5 +1,12 @@
 @import './color.scss';
-
+.back{
+    background-color: $white-reddit;
+    padding: 20px;
+    color: $orange-reddit;
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 18px;
+}
 .profil-conteneur{
     background-color: $white-reddit;
     width: 60%;
@@ -8,7 +15,7 @@
     border-radius: 15px;
     border: 1px solid $orange-reddit;
     .my-profil{
-        border: 1px solid $grey-reddit;
+        border: 1px solid black;
         padding: 10px;
         border-radius: 15px;
         margin-bottom: 15px;
@@ -49,7 +56,13 @@
                 color: $blue-reddit;
                 font-size: 20px;
             }
+            
         }
+    }
+    .button-delete-profil{
+        color:$white-reddit;
+        background-color: $orange-reddit;
+        font-weight: bold;
     }
     
     

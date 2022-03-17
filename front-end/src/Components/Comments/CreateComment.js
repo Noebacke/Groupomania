@@ -10,14 +10,12 @@ const CreateComment = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
         try{
-            
             console.log("comment",comment);
             const data = commentsApi.create(comment);
+            alert('commentaire ajouté')
             window.location.reload();
             navigate('/')
-            
         }catch(error){
             console.log("erreur lors de la publication du commentaire",error);
         }

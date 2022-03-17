@@ -70,6 +70,7 @@ const Post = (props) => {
               <DeleteButton
                 onDelete={() => {
                   axios.delete(URL_POSTS + `/${props.id}`).then((res) => {
+                    alert('post supprimé')
                     window.location.reload();
                     console.log(res);
                   });

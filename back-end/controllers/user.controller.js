@@ -60,18 +60,22 @@ module.exports.login = (req, res, next) => {
 module.exports.updateUser = async (req,res, next) => {
   
   const user = await UserModel.findOne({where : {id: req.auth}})
-  const userName = req.body.user_name;
+  const userName = req.body.user_name
   const email = req.body.email
-  const password = req.body.password;
-  console.log("password", password);
-  const salt = await bcrypt.genSalt(10);
-  const encryptedPassword = await bcrypt.hash(password, salt);
+  const password = req.body.password
+  console.log("password", req.body)
+  const salt = await bcrypt.genSalt(10)
+  if(password){
+    const encryptedPassword = await bcrypt.hash(password, salt)
+    user.update({
+      password: encryptedPassword
+    })
+  }
   
   user.update(
     { 
       user_name : userName,
       email: email,
-      password: encryptedPassword
     }
   )
     .then(() => res.status(200).json({ message: "User modifié" }))

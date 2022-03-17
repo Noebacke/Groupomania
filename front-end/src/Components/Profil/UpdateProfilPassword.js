@@ -33,6 +33,7 @@ const UpdateProfilPassword = () => {
         event.preventDefault()
         try {
             await userApi.update(updateProfil)
+            alert('Password mis à jour')
             window.location.reload(); 
         }catch(error){
             console.log(error, "Le Changement de nom n'a pas abouti");

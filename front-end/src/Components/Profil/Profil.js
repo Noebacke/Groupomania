@@ -30,57 +30,64 @@ const Profile = () => {
     const handleSubmit = async ()=> {
         await userApi.deleteUser(user)
         .then( 
-            "Le compte à correctement été supprimé",
+            alert("Le compte à correctement été supprimé"),
             localStorage.clear(),
             navigate('/')
         )
     }
 
+    const handleSubmitBack = async ()=>{
+        navigate('/')
+    }
+
     return (
-        <div className='profil-conteneur'>
-            <div className='my-profil'>
-                <h1>Mon profil</h1>
-            </div>
-            <div className='part-of-profil'>
-                <h3>Nom :</h3>
-                <div className='data-profil'>
-                    {user.user_name}
-                    <div>
-                        {userName && <UpdateProfilName
-                            description={user.description}
-                            user_name ={user.user_name}
-                            id= {user.id} 
-                        />}
+        <div>
+            <button className='back' onClick={handleSubmitBack}>Retour au menu</button>
+            <div className='profil-conteneur'>
+                <div className='my-profil'>
+                    <h1>Mon profil</h1>
+                </div>
+                <div className='part-of-profil'>
+                    <h3>Nom :</h3>
+                    <div className='data-profil'>
+                        {user.user_name}
+                        <div>
+                            {userName && <UpdateProfilName
+                                description={user.description}
+                                user_name ={user.user_name}
+                                id= {user.id} 
+                            />}
+                        </div>
+                        <button className='update-profil'onClick={()=> setUserName(!userName)}>
+                            <i class="far fa-edit"></i>
+                        </button>
                     </div>
-                    <button className='update-profil'onClick={()=> setUserName(!userName)}>
-                        <i class="far fa-edit"></i>
+                </div>
+                <div className='part-of-profil'>
+                    <h3>Password :</h3> 
+                    <div className='data-profil'>
+                        *******
+                        {password && <UpdateProfilPassword/>}
+                        <button className='update-profil'onClick={()=> setPassword(!password)}>
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </div>
+                </div>
+                <div className='part-of-profil'>
+                    <h3>Email :</h3> 
+                    <div className='data-profil'>
+                        {user.email}
+                        {email && <UpdateProfilEmail/>}
+                        <button className='update-profil'onClick={()=> setEmail(!email)}>
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </div>
+                </div>
+                <div className='delete-profil'>
+                    <button className='button-delete-profil' onClick={handleSubmit}>
+                            Supprimer le compte
                     </button>
                 </div>
-            </div>
-            <div className='part-of-profil'>
-                <h3>Password :</h3> 
-                <div className='data-profil'>
-                    *******
-                    {password && <UpdateProfilPassword/>}
-                    <button className='update-profil'onClick={()=> setPassword(!password)}>
-                        <i class="far fa-edit"></i>
-                    </button>
-                </div>
-            </div>
-            <div className='part-of-profil'>
-                <h3>Email :</h3> 
-                <div className='data-profil'>
-                    {user.email}
-                    {email && <UpdateProfilEmail/>}
-                    <button className='update-profil'onClick={()=> setEmail(!email)}>
-                        <i class="far fa-edit"></i>
-                    </button>
-                </div>
-            </div>
-            <div className='delete-profil'>
-                <button className='button-delete-profil' onClick={handleSubmit}>
-                        Supprimer le compte
-                </button>
             </div>
         </div>
     );
