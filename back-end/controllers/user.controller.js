@@ -43,7 +43,7 @@ module.exports.login = (req, res, next) => {
           res.status(200).json({
             userId: user.id,
             token: jwt.sign({ userId: user.id, admin: user.admin }, process.env.SECRET_TOKEN, {
-              expiresIn: "24h",
+              expiresIn: "10h",
             }),
             admin: user.admin,
             user_name: user.user_name,

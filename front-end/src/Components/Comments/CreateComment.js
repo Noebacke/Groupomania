@@ -42,7 +42,7 @@ const CreateComment = (props) => {
             onChange={handleChange}
           ></input>
           <br />
-          <button onClick={handleSubmit}>Publier le Commentaire</button>
+          <button onClick={handleSubmit} aria-label="button-publish-comment">Publier le Commentaire</button>
         </form>
       </div>
     );

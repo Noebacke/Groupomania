@@ -20,7 +20,10 @@ const GetAllComments = (props) => {
     return (
         <div className='all-comments'>
           <button className='button-create-comment' onClick={()=> setNewComment(!newComment)}>
+              <div className='div-create'>
                 <i class="fas fa-plus-circle"></i>
+                Ajouter un commentaire
+              </div>
           </button>
           {newComment && <CreateComment
             postId={props.postId}

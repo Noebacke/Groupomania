@@ -3,7 +3,7 @@
 body{
     // background-image: url('../../public/img/icon.png');
     background: $grey-reddit;
-    font-family: $font-family-reddit;
+    font-family: 'Roboto', sans-serif !important;
     margin: 0 ;
     
 }
@@ -13,6 +13,12 @@ a{
     
 }
 
+.div-create{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 18px;
+}
 a:link {
     color: black;
 }
@@ -24,15 +30,14 @@ a:visited {
 button {
     border-radius: 15px;
     padding: 10px;
-    background-color: $grey-reddit;
     color: $blue-reddit;
     border: none;
     cursor: pointer;
-    
+    background-color: white;
 }
 .get-post-card{
     background-color: white;
-    border-color: $grey-reddit;
+    
     
 }
 
@@ -80,21 +85,6 @@ button {
         }
         i{
             font-size: 17px;
-        }
-        .likes-system{
-            display: flex;
-            justify-content: space-around ;
-            align-items: baseline ;
-            width: 80px;
-            .likes {
-                color: $blue-reddit;
-                background-color: $grey-reddit;
-                
-            }
-            .dislikes {
-                color: red;
-                
-            }
         }
         .show-comments{
             border: none;
@@ -150,7 +140,9 @@ button {
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
+    align-items: center;
     .button-create-comment{
         font-size: 20px;
+        background-color: $grey-reddit !important;
     }
 }

@@ -31,21 +31,26 @@ const GetAllPost = (props) => {
         <div>  
             <NavBar/>   
             <br/>
-            <button className='button-create-post' onClick={handleSubmit}>
-                <i class="fas fa-plus-circle"></i>
-            </button>
-            <div className='posts'>
-                { posts.map( (post) => <Post 
-                    key={post.id}
-                    description={post.description}
-                    user_name ={post.user_name}
-                    createdAt= {post.createdAt}
-                    imageUrl= {post.imageUrl}
-                    title={post.title} 
-                    id= {post.id} 
-                    comments= {post.Comments}
-                    admin= {props.admin}
-                />)}
+            <div >
+                <button className='button-create-post' onClick={handleSubmit} ariaCreatePost="button-create-post">
+                    <div className='div-create'>
+                        <i class="fas fa-plus-circle"></i>
+                        Créer un post
+                    </div>
+                </button>
+                <div className='posts'>
+                    { posts.map( (post) => <Post 
+                        key={post.id}
+                        description={post.description}
+                        user_name ={post.user_name}
+                        createdAt= {post.createdAt}
+                        imageUrl= {post.imageUrl}
+                        title={post.title} 
+                        id= {post.id} 
+                        comments= {post.Comments}
+                        admin= {props.admin}
+                    />)}
+                </div>
             </div>
         </div>
         

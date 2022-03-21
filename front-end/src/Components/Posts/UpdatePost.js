@@ -92,10 +92,10 @@ const UpdatePost = () => {
             ></input>
             <br />
             <br />
-            <img src={postPicture} alt="" />
+            <img src={postPicture} alt="img-of-update" />
             <br />
             <br />
-            <button className="update-post" onClick={handleSubmit}>
+            <button className="update-post" onClick={handleSubmit} aria-updatePost="button-create-update">
               Modifier le post
             </button>
           </form>

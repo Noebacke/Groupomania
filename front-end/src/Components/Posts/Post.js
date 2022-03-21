@@ -44,25 +44,25 @@ const Post = (props) => {
       <div>
         <div className="post">
           <div className="user">
-            <div className="user-name">Posté par {props.user_name}</div>
             <div className="nav-bar-title">
               <div className="title">{props.title}</div>
             </div>
+            <div className="user-name">Posté par {props.user_name}</div>
           </div>
-          <button onClick={handleGetPost} className="get-post">
+          <button onClick={handleGetPost} className="get-post" ariaGetPost="button-get-post">
             <div className="comment">{props.description}</div>
-            <img src={props.imageUrl} alt="img"></img>
+            <img src={props.imageUrl} alt="img-of-post"></img>
           </button>
           <div className="nav-post">
             { autorisation ?
-              <button onClick={handleUpdatePost} className="button-update">
-                <i class="far fa-edit"></i>
+              <button onClick={handleUpdatePost} className="button-update" ariaUpdatePost="button-update-post">
+                <i class="far fa-edit">Modifier</i>
               </button>
               : null
             }
             <div className="show-comments">
-              <button onClick={()=>setShowComment(!showComment)}>
-                <i class="far fa-comment-dots"></i>
+              <button onClick={()=>setShowComment(!showComment)} ariaShowComment="button-show-comments" className='button-show-comment' type='button'>
+                <i class="far fa-comment-dots">Commentaires</i>
               </button>
             </div>
             

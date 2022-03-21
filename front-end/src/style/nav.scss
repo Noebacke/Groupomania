@@ -1,5 +1,7 @@
 @import './color.scss';
-
+body{
+    font-family: 'Roboto', sans-serif !important;
+}
 .nav-bar{
     .goupomania-logo{
         margin: 0;
@@ -43,6 +45,7 @@
 .button-create-post{
     display: flex;
     margin: 0 auto;
+    background-color: $grey-reddit;
     i{
         font-size:30px;
     }

@@ -1,4 +1,7 @@
 @import './color.scss';
+body{
+    font-family: 'Roboto', sans-serif !important;
+}
 .back{
     background-color: $white-reddit;
     padding: 20px;

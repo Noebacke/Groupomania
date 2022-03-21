@@ -56,17 +56,17 @@ const LogIn = () => {
                 </div>
                 <p>
                     <p>
-                        Email :
+                        <label for='email'>Email :</label>
                         <br/>
-                        <input name='email'onChange={handleChangeEmail}/>
+                        <input name='email' type='email' id='email'onChange={handleChangeEmail}/>
                     </p>
                     <p>
-                        Votre mot de passe :
+                        <label for='password'>Votre mot de passe :</label>
                         <br />
-                        <input type="password" onChange={handleChangePassword}/>
+                        <input name='password'type="password" id='password'onChange={handleChangePassword}/>
                     </p>
                 </p>
-                <button className='button-connexion' onClick={handleSubmit}>Me connecter</button>
+                <button className='button-connexion' onClick={handleSubmit} aria-label="Connexion">Me connecter</button>
                 <br/>
                 <Link to="/signup"className='a-connexion'>
                     Vous n'avez pas encore de compte ? Créez en un ici

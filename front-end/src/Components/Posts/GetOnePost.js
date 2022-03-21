@@ -26,10 +26,10 @@ const GetOnePost = () => {
         </div>
         <div className='post'>
           <div className="user">
-            <div className="user-name">Posté par {post.user_name}</div>
-            <div className="nav-bar-title">
+          <div className="nav-bar-title">
               <div className="title">{post.title}</div>
             </div>
+            <div className="user-name">Posté par {post.user_name}</div>
           </div>
           <div className="comment">
                 {post.description}

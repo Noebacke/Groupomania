@@ -28,9 +28,9 @@ const NavBar = (props) => {
     return (
       <nav>
         <div className="nav-bar">
-          <img src="./img/Groupomania.png" className="goupomania-logo"></img>
+          <img src="./img/Groupomania.png" className="goupomania-logo" alt='logo-groupomania'></img>
           <div className="button-of-nav">
-            <button className="my-profil" onClick={handleGetUser}>
+            <button className="my-profil" onClick={handleGetUser} ariaGetProfil="button-navigate-profil-page">
               <i class="fas fa-user-circle"></i>
               Mon profil
             </button>
@@ -38,6 +38,7 @@ const NavBar = (props) => {
               to="/"
               className="disconnect-link"
               onClick={handleClickDisconnect}
+              ariaDisconnectProfil="button-disconnect"
             >
               <i class="fas fa-sign-out-alt"></i>
               Se déconnecter

@@ -1,6 +1,8 @@
 @import './color.scss';
 
-
+body{
+    font-family: 'Roboto', sans-serif !important;
+}
 .title-connexion {
     color: $orange-reddit;
     margin-bottom: 0;

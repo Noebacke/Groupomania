@@ -58,7 +58,7 @@ const CreatePost = () => {
         <div>  
             <NavBar />
         </div>
-        <form className="form-conteneur">
+        <form className="form-conteneur" ariaFormPost='Form-create-post'>
           <h3>Création du post</h3>
           <br />
           Titre :
@@ -89,7 +89,7 @@ const CreatePost = () => {
           ></input>
           <br />
           <br />
-          <img src={postPicture} alt="" />
+          <img src={postPicture} alt="picture-of-post" />
           <br />
           <br />
           <button onClick={handleSubmit}>Publier le post</button>
