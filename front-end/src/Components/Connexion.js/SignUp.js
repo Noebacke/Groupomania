@@ -79,34 +79,37 @@ const SignUp = () => {
     }
     
   };
-
+  const handleSubmitBack = async ()=>{
+    navigate('/')
+  }
   return (
     <div>
+      <button className='back' onClick={handleSubmitBack}>Retour au menu</button>
       <form className="form-conteneur">
         <div>
           <h2>Créez votre compte</h2>
         </div>
-        <p>
+        <label className="label-create-profil">
           Email :
           <br />
           <input required onChange={handleChangeEmail} />
-        </p>
-        <p>
+        </label>
+        <label className="label-create-profil">
           Votre nom d'utilisateur :
           <br />
           <input required onChange={handleChangeUserName} />
-        </p>
-        <p>
+        </label>
+        <label className="label-create-profil">
           Votre mot de passe :
           <br />
           <input type="password" required onChange={handleChangePassword} />
-        </p>
-        <p>
+        </label>
+        <label className="label-create-profil">
           Confirmez votre mot de passe :
           <br />
           <input type="password" required onChange={handleChangePassword2} />
-        </p>
-        <button className="button-connexion" onClick={handleSubmit}>
+        </label>
+        <button className="button-connexion" onClick={handleSubmit} ariaCreteProfil='button-create-profil'>
           Créer mon compte
         </button>
       </form>

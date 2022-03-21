@@ -48,7 +48,7 @@ const Profile = () => {
                     <h1>Mon profil</h1>
                 </div>
                 <div className='part-of-profil'>
-                    <h3>Nom :</h3>
+                    <h2>Nom :</h2>
                     <div className='data-profil'>
                         {user.user_name}
                         <div>
@@ -58,28 +58,31 @@ const Profile = () => {
                                 id= {user.id} 
                             />}
                         </div>
-                        <button className='update-profil'onClick={()=> setUserName(!userName)}>
+                        <button className='update-profil'onClick={()=> setUserName(!userName)}ariaUpdateProfil="button-update-profil">
                             <i class="far fa-edit"></i>
+                            Modifier
                         </button>
                     </div>
                 </div>
                 <div className='part-of-profil'>
-                    <h3>Password :</h3> 
+                    <h2>Password :</h2> 
                     <div className='data-profil'>
                         *******
                         {password && <UpdateProfilPassword/>}
-                        <button className='update-profil'onClick={()=> setPassword(!password)}>
-                            <i class="far fa-edit"></i>
+                        <button className='update-profil'onClick={()=> setPassword(!password)}ariaUpdateProfil="button-update-profil">
+                        <i class="far fa-edit"></i>
+                            Modifier
                         </button>
                     </div>
                 </div>
                 <div className='part-of-profil'>
-                    <h3>Email :</h3> 
+                    <h2>Email :</h2> 
                     <div className='data-profil'>
                         {user.email}
                         {email && <UpdateProfilEmail/>}
-                        <button className='update-profil'onClick={()=> setEmail(!email)}>
+                        <button className='update-profil'onClick={()=> setEmail(!email)} ariaUpdateProfil="button-update-profil">
                             <i class="far fa-edit"></i>
+                            Modifier
                         </button>
                     </div>
                 </div>

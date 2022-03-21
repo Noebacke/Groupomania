@@ -56,13 +56,15 @@ const Post = (props) => {
           <div className="nav-post">
             { autorisation ?
               <button onClick={handleUpdatePost} className="button-update" ariaUpdatePost="button-update-post">
-                <i class="far fa-edit">Modifier</i>
+                <i class="far fa-edit"></i>
+                Modifier
               </button>
               : null
             }
             <div className="show-comments">
               <button onClick={()=>setShowComment(!showComment)} ariaShowComment="button-show-comments" className='button-show-comment' type='button'>
-                <i class="far fa-comment-dots">Commentaires</i>
+                <i class="far fa-comment-dots"></i>
+                Commentaire
               </button>
             </div>
             

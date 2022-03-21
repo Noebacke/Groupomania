@@ -12,7 +12,15 @@ a{
     text-decoration: none;
     
 }
-
+.button-publish-post{
+    background-color: $orange-reddit;
+    color: $white-reddit;
+}
+.label-create-post{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .div-create{
     display: flex;
     align-items: center;
@@ -92,6 +100,7 @@ button {
             
         }
         .delete-button {
+            color: red;
             i{
                 color: red;
             }

@@ -40,6 +40,9 @@ const CreatePost = () => {
         description: value,
       });
     };
+    const handleSubmitBack = async ()=>{
+      navigate('/')
+    }
     
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -58,41 +61,51 @@ const CreatePost = () => {
         <div>  
             <NavBar />
         </div>
+        <button className='back' onClick={handleSubmitBack}>Retour au menu</button>
         <form className="form-conteneur" ariaFormPost='Form-create-post'>
           <h3>Création du post</h3>
           <br />
-          Titre :
-          <input
-            className="title"
-            required
-            size={20}
-            onChange={handleChangeTitle}
-          ></input>
+          <label className="label-create-post">
+            Titre
+            <br />
+            <input
+              className="title"
+              required
+              size={20}
+              onChange={handleChangeTitle}
+            > 
+            </input>
+          </label>
           <br />
-          Description :
-          <input
-            className="description"
-            required
-            onChange={handleChangeDescription}
-          ></input>
+          <label className="label-create-post">
+            Description
+            <br />
+            <input
+              className="description"
+              required
+              onChange={handleChangeDescription}
+            ></input>
+          </label>
           <br />
-          Images :
-          <br />
-          <br />
-          <input
-            className="img-of-newpost"
-            name="images"
-            type="file"
-            accept=".jpg, .jpeg, .png"
-            alt="img-of-post"
-            onChange={(event) => handlePicture(event)}
-          ></input>
+          <label className="label-create-post">
+            Image
+            <br />
+            <br />
+            <input
+              className="img-of-newpost"
+              name="images"
+              type="file"
+              accept=".jpg, .jpeg, .png"
+              alt="img-of-post"
+              onChange={(event) => handlePicture(event)}
+            ></input>
+          </label>
           <br />
           <br />
           <img src={postPicture} alt="picture-of-post" />
           <br />
           <br />
-          <button onClick={handleSubmit}>Publier le post</button>
+          <button onClick={handleSubmit} ariaPublishPost='button-publish-post' className='button-publish-post'>Publier le post</button>
         </form>
       </div>
     );

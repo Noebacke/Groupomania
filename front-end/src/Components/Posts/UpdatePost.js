@@ -55,47 +55,56 @@ const UpdatePost = () => {
             console.log(error, "Le post n'a pas pu être crée");
         }
     }
-
+    const handleSubmitBack = async ()=>{
+      navigate('/')
+    }
     return (
       <div>
         <div>
             <NavBar />
         </div>
+        <button className='back' onClick={handleSubmitBack}>Retour au menu</button>
         <div>
           <form className="form-conteneur">
             <h3>Modification du post</h3>
             <br />
-            Titre
-            <input
-              className="title"
-              required
-              onChange={handleChangeTitle}
-            ></input>
+            <label className="label-create-post">
+              Titre
+              <input
+                className="title"
+                required
+                onChange={handleChangeTitle}
+              ></input>
+            </label>
             <br />
-            Description
-            <input
-              className="description"
-              required
-              onChange={handleChangeDescription}
-            ></input>
+            <label className="label-create-post">
+              Description
+              <input
+                className="description"
+                required
+                onChange={handleChangeDescription}
+              ></input>
+            </label>
             <br />
-            Images
-            <br />
-            <br />
-            <input
-              className="img-of-newpost"
-              name="file"
-              type="file"
-              accept=".jpg, .jpeg, .png"
-              alt="img-of-post"
-              onChange={(event) => handlePicture(event)}
-            ></input>
+            <label className="label-create-post">
+              Images
+              <br />
+              <br />
+              <input
+                className="img-of-newpost"
+                name="file"
+                type="file"
+                accept=".jpg, .jpeg, .png"
+                alt="img-of-post"
+                onChange={(event) => handlePicture(event)}
+              ></input>
+            </label>
             <br />
             <br />
             <img src={postPicture} alt="img-of-update" />
             <br />
             <br />
-            <button className="update-post" onClick={handleSubmit} aria-updatePost="button-create-update">
+            <button className="update-post" onClick={handleSubmit} ariaUpdatePost="button-create-update">
               Modifier le post
             </button>
           </form>

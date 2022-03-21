@@ -6,7 +6,8 @@ const DeleteButton = (props) => {
         <button onClick={()=>{
             props.onDelete()
         }} className='delete-button' ariaDelete="button-delete">    
-            <i class="fas fa-trash-alt">Supprimer</i>
+            <i class="fas fa-trash-alt"></i>
+            Supprimer
         </button>
     );
 };
