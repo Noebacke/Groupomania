@@ -1,7 +1,6 @@
 @import './color.scss';
 
 body{
-    // background-image: url('../../public/img/icon.png');
     background: $grey-reddit;
     font-family: 'Roboto', sans-serif !important;
     margin: 0 ;
@@ -42,6 +41,10 @@ button {
     border: none;
     cursor: pointer;
     background-color: white;
+}
+.button-publish-comment{
+    background-color: $orange-reddit;
+    color: $white-reddit;
 }
 .get-post-card{
     background-color: white;
@@ -103,7 +106,7 @@ button {
             
         }
         .delete-button {
-            color: red;
+            color: red !important;
             i{
                 color: red;
             }
@@ -141,6 +144,7 @@ button {
     margin-bottom: 10px;
     border: 1px solid black;
     .delete-button {
+        color: red;
         background-color: white;
         i{
             color: red;

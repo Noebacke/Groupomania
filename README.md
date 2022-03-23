@@ -21,49 +21,24 @@ Le contenu du site :
 Pour installer le code source : 
 
     - cliquez sur " code " puis télécharger le fichier zip puis extraire ce dernier pour l'ouvrir dans un logiciel de code comme Visual Studio Code
-    - Créez un fichier ".env" dans le dossier "back-end" puis assigner des valeurs aux termes suivants : 
-            PORT= ( le port utilisé pour votre serveur)
-            PMYSQL= le mot de passe de votre base de donnée MySQL
-            URL=votre url par exemple 'http://localhost:5000' 
-            CLIENT_URL=  l'url du client pour les header, en temps normal pour de la production on y mettrait une étoile
-            SECRET_TOKEN = Votre token, prenez un token avec beaucoup de caractères différents et de grande taille car avec ce token on peut agir sur toute l'application, en avoir un sécurisé est donc essentiel 
-    -Installez MySQL, si vous êtes à l'aise avec vous pouvez utiliser l'application Mysql Workbench
-    -Créez une database "groupomania" avec pour mot de passe "abcdefgH123456" par exemple
+    - renommez le fichier ".env.exemple" en ".env", puis jouter votre mot de passe root de data base. 
+    - Si vous voulez des données test décommentez .
+    -Installez MySQL
+    -Créez une database "groupomania"
     -Il est important de vérifier que dans "config.json" vos information soient en adéquation avec ce que vous avez saisi à savoir le nom de la database et le mot de passe.
 
 
-Pour démarrer le serv Mysql depuis le terminal de vs code : 
-    -Utiliser un terminal prompt
-    -cd back-end
-    -set PATH=%PATH%;C:\"Program Files"\MySQL\"MySQL Server 8.0"\bin
-    -mysql -u root -p
-    -rentrer le mot de passe 
-
-Quelques commandes My SQL : 
-    -DROP TABLE nom_table;
-    -SHOW TABLES;
-    -USE nom_database;
-    -SHOW DATABASES;
-    -DELETE FROM `nom_table` WHERE `l'élément du genre name` = 'la valeur de cet élément';
-    -SHOW COLUMNS FROM `nom_table`;
-    -UPDATE `nom_table` SET `colonne` = 'valeur de la colone' ( WHERE `table` = 'valeur' ) Pour y ajouter une conddition par exemple changer le mail de tout ceux qui ont un b dans leur nom 
-    -SELECT * FROM nom_table ( le * est pour sélectionner tout les colonnes d'une table)
-    -INSERT INTO `nom_table` (`nom_colonne`,`nom_colonne`....)
-        VALUES
-     ('valeur_colonne','valeur_colonne')
-
 Pour la partie back-end: 
-
+    https://sequelize.org/ ( doc de sequelize un framework MySQL )
     - Installez les nodes modules
     - rentrez dans un terminal, cd back-end puis 'nodemon server'
     - Allez dans app.js 
-    - Enlevez la partie commentée afin d'avoir des posts, users basiques dont un des deux user aura le mode modérateur.
     - Pour les mots de passe allez dans le dossier "hash" puis le fichier hash.js pour hasher le mot de passe de votre choix, celui ci sera affiché dans votre terminal vous n'aurez plu qu'a 
     le copier pour en avoir le résultat hashé et correct pour la base de donnée.
-    -Une fois la base de donnée bien synchronisée vous pouvez commenter à nouveau ce qu'il y a dans l'app.js car les données de votre site seront à chaque fois écrasée si vous ne le faites pas.
+   
 
 Pour la partie front-end: 
-
+    https://fr.reactjs.org/ ( doc de React frameword java script )
     - J'ai choisi le framework React pour développer ma partie front-end
     - Installez aussi la partie node module
     - faites cd front-end dans un nouveau terminal

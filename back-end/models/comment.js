@@ -11,17 +11,9 @@ const Comment = db.define(
     type: DataTypes.STRING,
     allowNull: false
   },
-  user_name:{
-    type: DataTypes.STRING,
-  },
-  userId: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  postId: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
+  user_name: {
+    type: DataTypes.STRING
+  }
 }, {
   
 });

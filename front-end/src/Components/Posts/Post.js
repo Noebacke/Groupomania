@@ -14,7 +14,7 @@ const Post = (props) => {
     const admin = localStorage.getItem('admin')
     const name = localStorage.getItem('name')
     const userName = props.user_name
-    console.log("props.username",userName, admin);
+    console.log("props.username",props.user_name);
   
     const getAutorisation = () => {
         if(admin == "true"){

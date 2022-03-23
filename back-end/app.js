@@ -22,10 +22,10 @@ try {
 //Associations
 
 Post.hasMany(Comment)
-Comment.hasOne(Post)
+Comment.belongsTo(Post)
 User.hasMany(Post)
-Post.hasOne(User)
-Comment.hasOne(User)
+Post.belongsTo(User)
+Comment.belongsTo(User)
 User.hasMany(Comment)
 
 app.use((req, res, next) => {
@@ -46,20 +46,22 @@ app.use("/api/post", postRoutes);
 app.use("/api/comment", commentRoutes);
 app.use("/api/user" , userRoutes);
 
-// const initApp = async function (){
-//     await db.sync({ force: true})
-//     console.log('Database synced');
-//     const user1 = User.build({ email: "email quelquonque", password:'$2b$10$/rbyKq49T.RziNTGbmI9YeNE.TiFuWpd7stLgYZgr4DQcqPvAPozq', user_name: "Noé", userId: 1});
-//     user1.save();
-//     const user2 = User.build({ email: 'email quelquonque différent celui ci seta le modérateur', password:'$2b$10$/rbyKq49T.RziNTGbmI9YeNE.TiFuWpd7stLgYZgr4DQcqPvAPozq', user_name:"Nono", admin: true, userId: 2});
-//     user2.save();
-//     const post1 = Posts.build({ title: 'post13',description: 'Hello depuis un faux post', user_name: `${user1.user_name}`});
-//     post1.save();
-//     const post2 = Posts.build({ title: 'post23',description: 'Hello depuis le 2ème faux post', user_name: `${user2.user_name}`});
-//     post2.save();
-// } 
+const initApp = async function (){
+    await db.sync()
+    // console.log('Database synced');
+    // const user1 = User.build({ email: "noeebacke@gmail.com", password:'$2b$10$/rbyKq49T.RziNTGbmI9YeNE.TiFuWpd7stLgYZgr4DQcqPvAPozq', user_name: "Noé"});
+    // user1.save();
+    // const user2 = User.build({ email: 'noe.backepro@gmail.com', password:'$2b$10$/rbyKq49T.RziNTGbmI9YeNE.TiFuWpd7stLgYZgr4DQcqPvAPozq', user_name:"Nono", admin: true});
+    // user2.save();
+    // const post1 = Post.build({ title: 'post13',description: 'Hello depuis un faux post', UserId: 1});
+    // post1.save();
+    // const post2 = Post.build({ title: 'post23',description: 'Hello depuis le 2ème faux post', UserId: 2});
+    // post2.save();
+    // const comment1 = Comment.build({ description : "faux commentaire", UserId: 1, postId: 1})
+    // comment1.save()
+} 
 
 // Rajouter une route pour afficher les images dans le cour
 
-// initApp();
+initApp();
 module.exports = app;

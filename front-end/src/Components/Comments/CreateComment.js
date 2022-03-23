@@ -1,12 +1,28 @@
 import {useNavigate} from 'react-router-dom'
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import commentsApi from '../../services/commentsApi';
 import NavBar from '../../NavBar/NavBar';
+import { URL_GET_USER } from '../../config';
 
 
 const CreateComment = (props) => {
     const navigate = useNavigate();
     const [comment, setComment] = useState({})
+
+    const [user, setUser] = useState([])
+
+    
+    useEffect( () => {
+      axios.get(URL_GET_USER)
+          .then( res => {
+              const profil = res.data
+              console.log(profil);
+              setUser(profil)
+              
+          })
+          .catch( "Une erreur est survenue lors du chargement de la page")
+        }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -26,13 +42,14 @@ const CreateComment = (props) => {
         setComment({
             ...comment,
             [name]: value,
-            postId: props.postId    
+            postId: props.postId,
+            user_name: user.user_name
         })
     }
 
     return (
       <div>
-        <form className="form-conteneur">
+        <form className="form-conteneur-comment">
           <h3>Commentaire</h3>
           Description :
           <input
@@ -42,7 +59,7 @@ const CreateComment = (props) => {
             onChange={handleChange}
           ></input>
           <br />
-          <button onClick={handleSubmit} aria-label="button-publish-comment">Publier le Commentaire</button>
+          <button onClick={handleSubmit} aria-label="button-publish-comment" className='button-publish-comment'>Publier le Commentaire</button>
         </form>
       </div>
     );

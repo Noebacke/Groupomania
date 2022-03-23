@@ -6,8 +6,9 @@ const User = require('../models/user');
 
 module.exports.getAllComments = async (req, res, next) => {
 
-    const comment = await Comment.findAll({
-      
+    await Comment.findAll({
+      include: [ Post, User ],
+      order: [["createdAt", "DESC",]],
     })
       .then((comments) => {
         res.status(200).json(comments);
@@ -15,7 +16,7 @@ module.exports.getAllComments = async (req, res, next) => {
       .catch((error) => {
         res.status(500).json({ error });
       });
-    res.status(200).json(comment);
+    
 };
 
 module.exports.deleteComment = async ( req, res, next) => {
@@ -36,13 +37,13 @@ module.exports.createComment = async (req, res, next) => {
     const user = await User.findOne({where: { id: req.auth} });
     delete req.body.id;
     
-    console.log("req.body.id",req.body.id);
+    console.log("req.body.id",req.body);
     const createComment = await Comment.create({
         ... req.body,
         description: req.body.description,
-        user_name: user.user_name,
-        userId: req.auth,
-        postId: req.body.postId
+        UserId: req.auth,
+        postId: req.body.postId,
+        user_name: req.body.user_name
         
     });
   

@@ -15,13 +15,7 @@ const User = require('../models/user')
           type: DataTypes.STRING,
           allowNull: false,
         },
-        user_name: {
-          type: DataTypes.STRING,
-        },
         imageUrl: {
-          type: DataTypes.STRING,
-        },
-        userId: {
           type: DataTypes.STRING,
         },
         createdAt: {

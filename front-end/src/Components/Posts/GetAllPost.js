@@ -42,7 +42,7 @@ const GetAllPost = (props) => {
                     { posts.map( (post) => <Post 
                         key={post.id}
                         description={post.description}
-                        user_name ={post.user_name}
+                        user_name ={post.User.user_name}
                         createdAt= {post.createdAt}
                         imageUrl= {post.imageUrl}
                         title={post.title} 

@@ -4,7 +4,7 @@ const Comment = require('../models/comment')
 
 module.exports.getAllPosts = async (req, res, next) => {
   await Post.findAll({
-    include: Comment,
+    include: [ Comment, User ],
     order: [["createdAt", "DESC",]],
   })
     .then((posts) => res.status(200).json(posts))
@@ -53,12 +53,11 @@ module.exports.createPost = async (req, res, next) => {
     if (req.file) { 
         imagePost = `${req.protocol}://${req.get("host")}/images/${req.file.filename}` 
     }
-
+    console.log("userId",userId);
   const createPost = await Post.create({
       ...postObject, 
       imageUrl: imagePost,
-      userId: userId,
-      user_name: user.user_name,
+      UserId: userId,
       postId: postObject.id
       
   });

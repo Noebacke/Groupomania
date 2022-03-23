@@ -21,10 +21,6 @@ const db = require('../config/db');
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    postId: {
-      type: DataTypes.STRING,
-      
-    }
   }, {    
   });
 
