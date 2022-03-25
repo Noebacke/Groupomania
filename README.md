@@ -38,7 +38,7 @@ Pour la partie back-end:
    
 
 Pour la partie front-end: 
-    https://fr.reactjs.org/ ( doc de React frameword java script )
+    https://fr.reactjs.org/ ( doc de React framework javascript )
     - J'ai choisi le framework React pour développer ma partie front-end
     - Installez aussi la partie node module
     - faites cd front-end dans un nouveau terminal
